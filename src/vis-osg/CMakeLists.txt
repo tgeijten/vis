@@ -1,5 +1,8 @@
 cmake_minimum_required( VERSION 3.12 )
 
+find_path( VIS_INCLUDE_DIR NAMES "vis/mesh.h" PATHS ${CMAKE_CURRENT_SOURCE_DIR}/../../include )
+
+file ( GLOB VIS_INCLUDE_FILES "${VIS_INCLUDE_DIR}/vis/*.h" )
 file ( GLOB VIS_OSG_FILES "*.h" "*.cpp" )
 
 add_library(vis-osg SHARED ${VIS_OSG_FILES} ${VIS_INCLUDE_FILES})
