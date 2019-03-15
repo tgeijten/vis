@@ -1,0 +1,49 @@
+cmake_minimum_required( VERSION 3.12 )
+
+file ( GLOB VIS_OSG_FILES "*.h" "*.cpp" )
+
+add_library(vis-osg SHARED ${VIS_OSG_FILES} ${VIS_INCLUDE_FILES})
+
+# Require C++17 standard
+set_target_properties(vis-osg PROPERTIES CXX_STANDARD 17 CXX_STANDARD_REQUIRED ON)
+
+# OpenSceneGraph
+set(OSG_DIR "" CACHE PATH "Installation directory of OpenSceneGraph")
+FIND_PACKAGE( osg )
+FIND_PACKAGE( osgwidget )
+FIND_PACKAGE( osgqt )
+FIND_PACKAGE( osgga )
+FIND_PACKAGE( osgviewer )
+FIND_PACKAGE( osgutil )
+FIND_PACKAGE( osgdb )
+FIND_PACKAGE( osgshadow )
+FIND_PACKAGE( OpenThreads )
+
+target_include_directories(vis-osg PUBLIC ${VIS_INCLUDE_DIR})
+target_include_directories(vis-osg PRIVATE ${OSG_INCLUDE_DIR})
+target_include_directories(vis-osg PRIVATE ${XO_INCLUDE_DIR})
+
+target_link_libraries(vis-osg
+	xo
+	${OSG_LIBRARIES}
+	${OSGWIDGET_LIBRARIES}
+	${OSGGA_LIBRARIES}
+	${OSGVIEWER_LIBRARIES}
+	${OSGQT_LIBRARIES}
+	${OSGDB_LIBRARIES}
+	${OSGSHADOW_LIBRARIES}
+	${OPENTHREADS_LIBRARIES}
+	)
+
+include( PrecompiledHeaders )
+use_precompiled_headers( VIS_OSG_FILES "${CMAKE_CURRENT_SOURCE_DIR}/stdafx.h" "stdafx.cpp" 256 )
+
+source_group("vis" FILES ${VIS_INCLUDE_FILES})
+source_group("vis-osg" FILES ${VIS_OSG_FILES})
+
+# target properties
+set_target_properties(vis-osg PROPERTIES 
+	DEFINE_SYMBOL VIS_EXPORTS 
+	PROJECT_LABEL "vis-osg"
+	OUTPUT_NAME vis-osg
+	)
