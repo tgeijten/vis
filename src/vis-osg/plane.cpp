@@ -1,7 +1,7 @@
 #include "vis/plane.h"
+#include "vis-osg/osg_tools.h"
 
 #include "osg/Texture2D"
-#include "osg_tools.h"
 #include "osgDB/ReadFile"
 #include "osg/Fog"
 #include "osg/Material"

@@ -3,7 +3,7 @@
 
 #include "xo/shape/shape.h"
 
-#include "osg_tools.h"
+#include "vis-osg/osg_tools.h"
 #include "osg_object_manager.h"
 
 namespace vis

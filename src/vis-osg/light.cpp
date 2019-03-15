@@ -1,7 +1,7 @@
 #include "vis/light.h"
 #include "vis/scene.h"
 
-#include "osg_tools.h"
+#include "vis-osg/osg_tools.h"
 #include "osg_object_manager.h"
 
 namespace vis

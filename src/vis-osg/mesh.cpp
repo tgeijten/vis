@@ -3,7 +3,7 @@
 
 #include "xo/string/string_tools.h"
 
-#include "osg_tools.h"
+#include "vis-osg/osg_tools.h"
 #include "osgDB/ReadFile"
 #include "osg/ShapeDrawable"
 #include "osg/Material"

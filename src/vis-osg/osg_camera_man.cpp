@@ -1,4 +1,4 @@
-#include "osg_camera_man.h"
+#include "vis-osg/osg_camera_man.h"
 #include "xo/system/log_sink.h"
 #include <functional>
 

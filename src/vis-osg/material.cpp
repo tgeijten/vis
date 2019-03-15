@@ -1,5 +1,5 @@
 #include "vis/material.h"
-#include "osg_tools.h"
+#include "vis-osg/osg_tools.h"
 
 namespace vis
 {

@@ -1,4 +1,4 @@
-#include "osg_tools.h"
+#include "vis-osg/osg_tools.h"
 
 #include <osg/Geometry>
 #include "osg/Material"

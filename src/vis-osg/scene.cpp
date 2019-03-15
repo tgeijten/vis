@@ -2,7 +2,7 @@
 
 #include "osgShadow/ShadowedScene"
 #include "osgShadow/SoftShadowMap"
-#include "osg_tools.h"
+#include "vis-osg/osg_tools.h"
 #include "osgDB/ObjectCache"
 #include "osgDB/ReadFile"
 #include "osg/LightModel"
