@@ -9,8 +9,8 @@ namespace vis
 	class VIS_API light : public node
 	{
 	public:
+		light() : light_id_() {}
 		light( scene& parent, const vec3f& pos, const color& col );
-
 		light( const light& ) = delete;
 		light& operator=( const light& ) = delete;
 		light( light&& ) = default;
