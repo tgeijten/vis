@@ -22,7 +22,7 @@ namespace vis
 		void attenuation( float c, float l, float q );
 
 	private:
-		index_t light_id_;
+		handle<light> light_id_;
 		static int unique_light_number;
 	};
 }

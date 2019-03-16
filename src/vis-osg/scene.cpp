@@ -28,11 +28,11 @@ namespace vis
 			ss->setReceivesShadowTraversalMask( OsgReceiveShadowMask ); // this one doesn't do anything in osg
 			s_root->setShadowSettings( ss );
 
-			node_id_ = osg_add( s_root );
+			node_id_ = osg_add<node>( s_root );
 		}
 		else
 		{
-			node_id_ = osg_add( new osg::Group );
+			node_id_ = osg_add<node>( new osg::Group );
 		}
 
 		auto& node = osg_node( node_id_ );

@@ -14,7 +14,10 @@ namespace vis
 	class VIS_API node
 	{
 	public:
+		node() {}
 		node( node* parent );
+		node( const node& ) = delete;
+		node& operator=( const node& ) = delete;
 		node( node&& ) = default;
 		node& operator=( node&& ) = default;
 		~node();
@@ -36,9 +39,9 @@ namespace vis
 		void pos_ori( const vec3f& p, const quatf& q ) { pos( p ); ori( q ); }
 		void scale( const vec3f& s );
 
-		const index_t& node_id() const { return node_id_; }
+		const handle<node>& node_id() const { return node_id_; }
 
 	protected:
-		index_t node_id_;
+		handle<node> node_id_;
 	};
 }

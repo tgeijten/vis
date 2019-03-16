@@ -23,9 +23,9 @@ namespace vis
 		static osg_object_manager global_instance_;
 	};
 
-	inline index_t osg_add( osg::Object* o ) { return osg_object_manager::global_instance_.add( o ); }
-	template< typename T > T& osg_get( index_t i ) { return osg_object_manager::global_instance_.get< T >( i ); }
-	inline osg::Group& osg_group( index_t i ) { return osg_get< osg::Group >( i ); }
-	inline osg::Node& osg_node( index_t i ) { return osg_get< osg::Node >( i ); }
-	inline osg::PositionAttitudeTransform& osg_trans( index_t i ) { return osg_get< osg::PositionAttitudeTransform >( i ); }
+	template< typename T > handle< T > osg_add( osg::Object* o ) { return osg_object_manager::global_instance_.add( o ); }
+	template< typename T > T& osg_get( uint32_t i ) { return osg_object_manager::global_instance_.get< T >( i ); }
+	inline osg::Group& osg_group( handle< node > i ) { return osg_get< osg::Group >( i.value ); }
+	inline osg::Node& osg_node( handle< node > i ) { return osg_get< osg::Node >( i.value ); }
+	inline osg::PositionAttitudeTransform& osg_trans( handle< node >  i ) { return osg_get< osg::PositionAttitudeTransform >( i.value ); }
 }

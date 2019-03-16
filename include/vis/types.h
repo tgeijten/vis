@@ -18,8 +18,7 @@ namespace vis
 	class light;
 	class material;
 
-	using mesh_id = xo::handle< mesh >;
-
+	using xo::handle;
 	using xo::vec3f;
 	using xo::vec4f;
 	using xo::quatf;

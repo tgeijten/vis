@@ -23,8 +23,8 @@ namespace vis
 		else
 			file_node = osgDB::readNodeFile( filename.string() );
 
-		mesh_id_ = osg_add( file_node );
-		osg_get< osg::Group >( node_id_ ).addChild( file_node );
+		mesh_id_ = osg_add<mesh>( file_node );
+		osg_group( node_id_ ).addChild( file_node );
 	}
 
 	struct create_shape_visitor {
@@ -68,12 +68,12 @@ namespace vis
 		sd->setColor( to_osg( col ) );
 		auto g = new osg::Geode;
 		g->addDrawable( sd );
-		mesh_id_ = osg_add( g );
-		osg_get< osg::Group >( node_id_ ).addChild( g );
+		mesh_id_ = osg_add<mesh>( g );
+		osg_group( node_id_ ).addChild( g );
 	}
 
 	void mesh::set_color( const color& c )
 	{
-		dynamic_cast<osg::ShapeDrawable&>( *osg_get< osg::Geode >( mesh_id_ ).getDrawable( 0 ) ).setColor( to_osg( c ) );
+		dynamic_cast<osg::ShapeDrawable&>( *osg_get< osg::Geode >( mesh_id_.value ).getDrawable( 0 ) ).setColor( to_osg( c ) );
 	}
 }

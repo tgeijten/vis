@@ -22,6 +22,7 @@ namespace vis
 
 		void set_color( const color& c );
 
-		index_t mesh_id_;
+	protected:
+		handle<mesh> mesh_id_;
 	};
 }
