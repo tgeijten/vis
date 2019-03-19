@@ -72,6 +72,12 @@ namespace vis
 		osg_group( node_id_ ).addChild( g );
 	}
 
+	mesh::~mesh()
+	{
+		if ( mesh_id_ )
+			osg_remove( mesh_id_ );
+	}
+
 	void mesh::set_color( const color& c )
 	{
 		dynamic_cast<osg::ShapeDrawable&>( *osg_get< osg::Geode >( mesh_id_.value ).getDrawable( 0 ) ).setColor( to_osg( c ) );

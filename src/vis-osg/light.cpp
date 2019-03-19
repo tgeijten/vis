@@ -3,6 +3,7 @@
 
 #include "vis-osg/osg_tools.h"
 #include "vis-osg/osg_object_manager.h"
+#include <osg/LightSource>
 
 namespace vis
 {

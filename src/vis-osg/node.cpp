@@ -50,6 +50,7 @@ namespace vis
 				// this is the last ref, so remove from all parents
 				while ( group.getNumParents() > 0 )
 					group.getParent( 0 )->removeChild( &group );
+				osg_remove( node_id_ );
 			}
 		}
 	}
@@ -63,12 +64,13 @@ namespace vis
 	{
 		// this resets any node mask related setting
 		// TODO: find a better way to show/hide nodes
-		osg_group( node_id_ ).setNodeMask( show ? ~0 : 0 );
+		auto& g = osg_group( node_id_ );
+		g.setNodeMask( show ? ~0 : 0 );
 	}
 
 	void node::set_material( material& m )
 	{
-		osg_node( node_id_ ).getOrCreateStateSet()->setAttribute( m.osg_mat() );
+		osg_node( node_id_ ).getOrCreateStateSet()->setAttribute( &osg_material( m.material_id() ) );
 	}
 
 	bool node::has_parent() const

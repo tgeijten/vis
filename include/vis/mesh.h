@@ -19,6 +19,7 @@ namespace vis
 		mesh& operator=( const mesh& ) = delete;
 		mesh( mesh&& ) = default;
 		mesh& operator=( mesh&& ) = default;
+		~mesh();
 
 		void set_color( const color& c );
 

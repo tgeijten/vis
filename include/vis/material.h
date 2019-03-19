@@ -2,19 +2,20 @@
 
 #include "vis_api.h"
 #include "types.h"
-#include <osg/Material>
 
 namespace vis
 {
 	class VIS_API material
 	{
 	public:
-		material() : mat( new osg::Material ) {}
-		material( osg::Material* m ) : mat( m ) {}
-		material( const material& other ) : mat( other.mat ) {}
+		material() {}
 		material( color diffuse, color specular, float shininess, color ambient, color emissive );
 		material( color diffuse, float specular, float shininess, float ambient, float emissive );
-		virtual ~material() {}
+		material( const material& ) = delete;
+		material& operator=( const material& ) = delete;
+		material( material&& ) = default;
+		material& operator=( material&& ) = default;
+		~material();
 
 		material clone() const;
 
@@ -27,9 +28,9 @@ namespace vis
 		void emissive( color col );
 		void shininess( float s );
 
-		osg::Material* osg_mat() { return mat; }
+		const handle<material>& material_id() { return material_id_; }
 
 	private:
-		osg::ref_ptr< osg::Material > mat;
+		handle<material> material_id_;
 	};
 }

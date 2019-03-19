@@ -1,7 +1,6 @@
 #pragma once
 
 #include "vis_api.h"
-#include <osg/LightSource>
 #include "node.h"
 
 namespace vis

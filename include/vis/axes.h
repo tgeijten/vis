@@ -1,8 +1,8 @@
 #pragma once
 
+#include "vis_api.h"
 #include "mesh.h"
 #include "node.h"
-#include "arrow.h"
 
 namespace vis
 {
