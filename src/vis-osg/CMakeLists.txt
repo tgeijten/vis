@@ -6,7 +6,7 @@ file ( GLOB VIS_INCLUDE_FILES "${VIS_INCLUDE_DIR}/vis/*.h" )
 file ( GLOB VIS_OSG_INCLUDE_FILES "${VIS_INCLUDE_DIR}/vis-osg/*.h" )
 file ( GLOB VIS_OSG_SOURCE_FILES "*.h" "*.cpp" )
 
-add_library(vis-osg SHARED ${VIS_OSG_SOURCE_FILES} ${VIS_INCLUDE_FILES})
+add_library(vis-osg SHARED ${VIS_INCLUDE_FILES} ${VIS_OSG_SOURCE_FILES} ${VIS_OSG_INCLUDE_FILES})
 
 # Require C++17 standard
 set_target_properties(vis-osg PROPERTIES CXX_STANDARD 17 CXX_STANDARD_REQUIRED ON)
@@ -43,7 +43,7 @@ include( PrecompiledHeaders )
 use_precompiled_headers( VIS_OSG_SOURCE_FILES "${CMAKE_CURRENT_SOURCE_DIR}/stdafx.h" "stdafx.cpp" 256 )
 
 source_group("vis" FILES ${VIS_INCLUDE_FILES})
-source_group("vis-osg" FILES ${VIS_OSG_SOURCE_FILES})
+source_group("vis-osg" FILES ${VIS_OSG_SOURCE_FILES} ${VIS_OSG_INCLUDE_FILES})
 
 # target properties
 set_target_properties(vis-osg PROPERTIES 

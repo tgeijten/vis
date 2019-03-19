@@ -3,10 +3,10 @@
 #include "osgShadow/ShadowedScene"
 #include "osgShadow/SoftShadowMap"
 #include "vis-osg/osg_tools.h"
+#include "vis-osg/osg_object_manager.h"
 #include "osgDB/ObjectCache"
 #include "osgDB/ReadFile"
 #include "osg/LightModel"
-#include "osg_object_manager.h"
 
 namespace vis
 {

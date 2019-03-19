@@ -1,5 +1,6 @@
 #pragma once
 
+#include "vis/vis_api.h"
 #include "vis/types.h"
 
 #include <osg/ref_ptr>
@@ -9,7 +10,7 @@
 
 namespace vis
 {
-	struct osg_object_manager
+	struct VIS_API osg_object_manager
 	{
 	public:
 		osg_object_manager() {}

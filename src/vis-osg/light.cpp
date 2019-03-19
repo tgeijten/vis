@@ -2,7 +2,7 @@
 #include "vis/scene.h"
 
 #include "vis-osg/osg_tools.h"
-#include "osg_object_manager.h"
+#include "vis-osg/osg_object_manager.h"
 
 namespace vis
 {
@@ -29,7 +29,6 @@ namespace vis
 		osg_group( parent.node_id() ).addChild( light_source );
 		osg_group( parent.node_id() ).getOrCreateStateSet()->setMode( GL_LIGHT0 + get_number(), osg::StateAttribute::ON );
 		light_id_ = osg_add<light>( light_source );
-
 	}
 
 	int light::get_number()

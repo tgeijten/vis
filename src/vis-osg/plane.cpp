@@ -5,7 +5,7 @@
 #include "osgDB/ReadFile"
 #include "osg/Fog"
 #include "osg/Material"
-#include "osg_object_manager.h"
+#include "vis-osg/osg_object_manager.h"
 
 namespace vis
 {
