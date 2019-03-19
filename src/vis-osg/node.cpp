@@ -13,8 +13,11 @@ namespace vis
 
 	node::node( node* parent )
 	{
-		node_id_ = osg_add<node>( new osg::PositionAttitudeTransform );
-		parent->attach( *this );
+		if ( parent )
+		{
+			node_id_ = osg_add<node>( new osg::PositionAttitudeTransform );
+			parent->attach( *this );
+		}
 	}
 
 	node::~node()

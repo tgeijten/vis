@@ -14,8 +14,7 @@ namespace vis
 	class VIS_API node
 	{
 	public:
-		node() {}
-		node( node* parent );
+		node( node* parent = nullptr );
 		node( const node& ) = delete;
 		node& operator=( const node& ) = delete;
 		node( node&& ) = default;
