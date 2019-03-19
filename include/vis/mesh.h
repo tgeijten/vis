@@ -2,7 +2,6 @@
 
 #include "vis_api.h"
 #include "types.h"
-#include "color.h"
 #include "node.h"
 
 #include "xo/filesystem/path.h"

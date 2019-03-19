@@ -1,6 +1,7 @@
 #pragma once
 
 #include "node.h"
+#include "xo/filesystem/path.h"
 
 namespace vis
 {

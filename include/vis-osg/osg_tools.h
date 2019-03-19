@@ -2,7 +2,6 @@
 
 #include "vis/vis_api.h"
 #include "vis/types.h"
-#include "vis/color.h"
 #include "xo/filesystem/path.h"
 
 #include <osg/Vec3f>
@@ -18,7 +17,7 @@ namespace vis
 	inline osg::Vec3f to_osg( const vec3f& v ) { return osg::Vec3f( v.x, v.y, v.z ); }
 	inline osg::Vec4f to_osg( const vec4f& v ) { return osg::Vec4f( v.x, v.y, v.z, v.w ); }
 	inline osg::Quat to_osg( const quatf& v ) { return osg::Quat( v.x, v.y, v.z, v.w ); }
-	inline osg::Vec4f to_osg( const color& v ) { return osg::Vec4f( v.r, v.g, v.b, v.a ); }
+	inline osg::Vec4f to_osg( const xo::color& v ) { return osg::Vec4f( v.r, v.g, v.b, v.a ); }
 
 	inline quatf from_osg( const osg::Quat& v ) { return quatf( v.w(), v.x(), v.y(), v.z() ); }
 	inline vec3f from_osg( const osg::Vec3f& v ) { return vec3f( v.x(), v.y(), v.z() ); }

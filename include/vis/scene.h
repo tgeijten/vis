@@ -1,10 +1,7 @@
 #pragma once
 
-#include "mesh.h"
-#include "arrow.h"
-#include "trail.h"
-#include "color.h"
-#include "light.h"
+#include "vis_api.h"
+#include "types.h"
 #include "node.h"
 
 namespace vis

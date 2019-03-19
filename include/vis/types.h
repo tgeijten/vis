@@ -5,6 +5,7 @@
 #include "xo/geometry/quat_type.h"
 #include "xo/geometry/transform.h"
 #include "xo/utility/handle.h"
+#include "xo/utility/color.h"
 
 namespace vis
 {
@@ -18,6 +19,7 @@ namespace vis
 	class light;
 	class material;
 
+	using xo::color;
 	using xo::handle;
 	using xo::vec3f;
 	using xo::vec4f;
@@ -26,5 +28,4 @@ namespace vis
 	using xo::degreef;
 	using xo::radianf;
 	using xo::index_t;
-	using xo::no_index;
 }

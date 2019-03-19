@@ -1,6 +1,7 @@
 #pragma once
 
-#include "color.h"
+#include "vis_api.h"
+#include "types.h"
 #include <osg/Material>
 
 namespace vis
