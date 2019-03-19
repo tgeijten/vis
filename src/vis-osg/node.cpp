@@ -11,14 +11,14 @@ namespace vis
 	using xo::shape;
 	using xo::shape_type;
 
-	node::node( node* parent )
+	node::node( node* parent ) :
+		node_id_()
 	{
 		if ( parent )
 		{
 			node_id_ = osg_add<node>( new osg::PositionAttitudeTransform );
 			parent->attach( *this );
 		}
-		else node_id_ = no_index;
 	}
 
 	node::~node()
@@ -43,7 +43,7 @@ namespace vis
 
 	void node::release()
 	{
-		if ( node_id_ != no_index )
+		if ( node_id_ )
 		{
 			auto& group = osg_group( node_id_ );
 			if ( group.referenceCount() == group.getNumParents() + 1 )
