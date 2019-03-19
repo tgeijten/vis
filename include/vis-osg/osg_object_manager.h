@@ -31,11 +31,11 @@ namespace vis
 
 	template< typename T > handle< T > osg_add( osg::Object* o ) {
 		auto idx = osg_object_manager::global_instance_.add( o );
-		xo::log::debug( "Added ", xo::clean_type_name<T>(), idx );
+		//xo::log::debug( "Added ", xo::clean_type_name<T>(), idx );
 		return handle<T>( idx );
 	}
 	template< typename T > void osg_remove( handle< T > i ) {
-		xo::log::debug( "Removing ", xo::clean_type_name<T>(), i.value );
+		//xo::log::debug( "Removing ", xo::clean_type_name<T>(), i.value );
 		return osg_object_manager::global_instance_.remove( i.value );
 	}
 
