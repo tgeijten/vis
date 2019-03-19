@@ -9,6 +9,7 @@ namespace vis
 	class VIS_API arrow : public node
 	{
 	public:
+		arrow() {}
 		arrow( node& parent, float radius, float head_radius, const color& c, float detail = 0.5f );
 		arrow( const arrow& ) = delete;
 		arrow& operator=( const arrow& ) = delete;

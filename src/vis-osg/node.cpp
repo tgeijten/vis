@@ -11,14 +11,10 @@ namespace vis
 	using xo::shape;
 	using xo::shape_type;
 
-	node::node( node* parent ) :
-		node_id_()
+	node::node( node* parent )
 	{
-		if ( parent )
-		{
-			node_id_ = osg_add<node>( new osg::PositionAttitudeTransform );
-			parent->attach( *this );
-		}
+		node_id_ = osg_add<node>( new osg::PositionAttitudeTransform );
+		parent->attach( *this );
 	}
 
 	node::~node()

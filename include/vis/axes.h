@@ -9,8 +9,11 @@ namespace vis
 	class VIS_API axes : public node
 	{
 	public:
+		axes() {}
 		axes( node& parent, vec3f length, float detail ) : axes( parent, length, 0.005f, detail ) {}
 		axes( node& parent, vec3f length, float radius, float detail );
+		axes( const axes& ) = delete;
+		axes& operator=( const axes& ) = delete;
 		axes( axes&& ) = default;
 		axes& operator=( axes&& ) = default;
 

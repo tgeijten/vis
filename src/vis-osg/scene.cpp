@@ -11,7 +11,7 @@
 namespace vis
 {
 	scene::scene( bool use_shadows ) :
-	node( nullptr )
+	node()
 	{
 		if ( use_shadows )
 		{

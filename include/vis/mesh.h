@@ -13,6 +13,7 @@ namespace vis
 	class VIS_API mesh : public node
 	{
 	public:
+		mesh() {}
 		mesh( node& parent, const xo::path& filename );
 		mesh( node& parent, const xo::shape& shape, const color& col, float detail = 0.75f );
 		mesh( const mesh& ) = delete;
