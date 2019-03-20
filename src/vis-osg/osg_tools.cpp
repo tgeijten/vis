@@ -1,7 +1,7 @@
 #include "vis-osg/osg_tools.h"
 
 #include <osg/Geometry>
-#include "osg/Material"
+#include <osg/Material>
 #include "xo/container/prop_node.h"
 #include "xo/system/log.h"
 #include "xo/time/timer.h"
