@@ -7,23 +7,22 @@
 #include "xo/time/timer.h"
 #include "xo/container/prop_node_tools.h"
 #include "xo/serialization/serialize.h"
-
-using namespace xo;
+#include "xo/serialization/char_stream.h"
 
 namespace vis
 {
 	/// convert space-delimited string to vector of elements
-	template< typename T > std::vector< T > str_to_vec( const string& s, size_t max_values, const char* delim = XO_WHITESPACE_CHARS ) {
-		char_stream str( s.c_str(), delim );
-		std::vector< T > vec; if ( max_values != no_index ) vec.reserve( max_values );
+	template< typename T > std::vector< T > str_to_vec( const std::string& s, size_t max_values, const char* delim = xo::whitespace_characters ) {
+		xo::char_stream str( s.c_str(), delim );
+		std::vector< T > vec; if ( max_values != xo::no_index ) vec.reserve( max_values );
 		while ( str.good() && vec.size() < max_values ) { T elem; str >> elem; if ( !str.fail() ) vec.push_back( elem ); }
 		return vec;
 	}
 
-	VIS_API osg::Geode* read_vtp( const path& filename )
+	VIS_API osg::Geode* read_vtp( const xo::path& filename )
 	{
-		prop_node root_pn = load_file( filename, "xml" );
-		prop_node& poly_pn = root_pn[ "VTKFile" ][ "PolyData" ][ "Piece" ];
+		xo::prop_node root_pn = load_file( filename, "xml" );
+		xo::prop_node& poly_pn = root_pn[ "VTKFile" ][ "PolyData" ][ "Piece" ];
 		auto point_count = poly_pn.get< int >( "NumberOfPoints");
 		auto poly_count = poly_pn.get< int >( "NumberOfPolys" );
 
@@ -48,8 +47,8 @@ namespace vis
 		osg::ref_ptr< osg::DrawElementsUShort > quadPrimitives = new osg::DrawElementsUShort( GL_QUADS );
 
 		{
-			auto con_vec = str_to_vec< int >( poly_pn[ "Polys" ][ 0 ].get_value(), no_index );
-			auto ofs_vec = str_to_vec< int >( poly_pn[ "Polys" ][ 1 ].get_value(), no_index );
+			auto con_vec = str_to_vec< int >( poly_pn[ "Polys" ][ 0 ].get_value(), xo::no_index );
+			auto ofs_vec = str_to_vec< int >( poly_pn[ "Polys" ][ 1 ].get_value(), xo::no_index );
 			
 			for ( size_t idx = 0; idx < ofs_vec.size(); ++idx )
 			{
