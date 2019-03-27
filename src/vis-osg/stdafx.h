@@ -1,7 +1,12 @@
 #pragma once
 
-#include <cstdint>
 #include <string>
+#include <vector>
+#include <utility>
+#include <algorithm>
+#include <memory>
+#include <limits>
+#include <initializer_list>
 
 #include <osg/Vec3f>
 #include <osg/Vec4f>
