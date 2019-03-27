@@ -4,7 +4,7 @@
 #include <osg/Material>
 #include "xo/container/prop_node.h"
 #include "xo/system/log.h"
-#include "xo/time/timer_v1.h"
+#include "xo/time/timer_v2.h"
 #include "xo/container/prop_node_tools.h"
 #include "xo/serialization/serialize.h"
 #include "xo/serialization/char_stream.h"
