@@ -30,8 +30,8 @@ namespace vis
 		osg::ref_ptr<osg::Vec3Array> normals = new osg::Vec3Array( point_count );
 		osg::Vec3Array* vertices = new osg::Vec3Array( point_count );
 
-		auto normal_vec = str_to_vec< float >( poly_pn[ "PointData" ][ "DataArray" ].get_value(), point_count * 3 );
-		auto point_vec = str_to_vec< float >( poly_pn[ "Points" ][ "DataArray" ].get_value(), point_count * 3 );
+		auto normal_vec = str_to_vec< float >( poly_pn[ "PointData" ][ "DataArray" ].raw_value(), point_count * 3 );
+		auto point_vec = str_to_vec< float >( poly_pn[ "Points" ][ "DataArray" ].raw_value(), point_count * 3 );
 
 		xo_assert( normal_vec.size() == point_count * 3 && point_vec.size() == point_count * 3 );
 
@@ -47,8 +47,8 @@ namespace vis
 		osg::ref_ptr< osg::DrawElementsUShort > quadPrimitives = new osg::DrawElementsUShort( GL_QUADS );
 
 		{
-			auto con_vec = str_to_vec< int >( poly_pn[ "Polys" ][ 0 ].get_value(), xo::no_index );
-			auto ofs_vec = str_to_vec< int >( poly_pn[ "Polys" ][ 1 ].get_value(), xo::no_index );
+			auto con_vec = str_to_vec< int >( poly_pn[ "Polys" ][ 0 ].raw_value(), xo::no_index );
+			auto ofs_vec = str_to_vec< int >( poly_pn[ "Polys" ][ 1 ].raw_value(), xo::no_index );
 			
 			for ( size_t idx = 0; idx < ofs_vec.size(); ++idx )
 			{
