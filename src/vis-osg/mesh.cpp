@@ -21,7 +21,7 @@ namespace vis
 		if ( filename.extension() == "vtp" )
 			file_node = read_vtp( filename );
 		else
-			file_node = osgDB::readNodeFile( filename.string() );
+			file_node = osgDB::readNodeFile( filename.str() );
 
 		mesh_id_ = osg_add<mesh>( file_node );
 		osg_group( node_id_ ).addChild( file_node );
