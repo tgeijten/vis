@@ -12,7 +12,6 @@
 namespace vis
 {
 	using xo::shape;
-	using xo::shape_type;
 
 	mesh::mesh( node& parent, const xo::path& filename ) :
 	node( &parent )

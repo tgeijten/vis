@@ -9,7 +9,6 @@
 namespace vis
 {
 	using xo::shape;
-	using xo::shape_type;
 
 	node::node( node* parent )
 	{
