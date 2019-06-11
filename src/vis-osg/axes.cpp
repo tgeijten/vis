@@ -2,6 +2,7 @@
 
 #include "vis/arrow.h"
 #include "xo/geometry/quat.h"
+#include "xo/geometry/euler_angles.h"
 
 namespace vis
 {
