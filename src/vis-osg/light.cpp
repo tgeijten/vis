@@ -26,7 +26,7 @@ namespace vis
 		light_source->setReferenceFrame( osg::LightSource::RELATIVE_RF );
 
 		// directly add the light to the parent node
-		// TODO: it should probably be added to its own node -- see if that's possible
+		// #todo: it should probably be added to its own node -- see if that's possible
 		osg_group( parent.node_id() ).addChild( light_source );
 		osg_group( parent.node_id() ).getOrCreateStateSet()->setMode( GL_LIGHT0 + get_number(), osg::StateAttribute::ON );
 		light_id_ = osg_add<light>( light_source );

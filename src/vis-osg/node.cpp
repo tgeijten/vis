@@ -62,7 +62,7 @@ namespace vis
 	void node::show( bool show )
 	{
 		// this resets any node mask related setting
-		// TODO: find a better way to show/hide nodes
+		// #todo: find a better way to show/hide nodes
 		auto& g = osg_group( node_id_ );
 		g.setNodeMask( show ? ~0 : 0 );
 	}
