@@ -14,7 +14,7 @@ namespace vis
 	public:
 		mesh() {}
 		mesh( node& parent, const xo::path& filename );
-		mesh( node& parent, const xo::shape& shape, const color& col, float detail = 0.75f );
+		mesh( node& parent, const xo::shape& shape, const color& col, const vec3f& center = vec3f::zero(), float detail = 0.75f );
 		mesh( const mesh& ) = delete;
 		mesh& operator=( const mesh& ) = delete;
 		mesh( mesh&& ) = default;

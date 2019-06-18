@@ -27,27 +27,27 @@ namespace vis
 	}
 
 	struct create_shape_visitor {
-		create_shape_visitor( osg::TessellationHints* hints ) : hints_( hints ) {}
+		create_shape_visitor( osg::TessellationHints* hints, const osg::Vec3& center ) : hints_( hints ), center_( center ) {}
 
 		osg::ShapeDrawable* operator()( const xo::sphere& s ) {
-			return new osg::ShapeDrawable( new osg::Sphere( osg::Vec3( 0.0f, 0.0f, 0.0f ), s.radius_ ), hints_ );
+			return new osg::ShapeDrawable( new osg::Sphere( center_, s.radius_ ), hints_ );
 		}
 
 		osg::ShapeDrawable* operator()( const xo::box& s ) {
 			auto d = dim( s );
-			return new osg::ShapeDrawable( new osg::Box( osg::Vec3( 0.0f, 0.0f, 0.0f ), d.x, d.y, d.z ), hints_ );
+			return new osg::ShapeDrawable( new osg::Box( center_, d.x, d.y, d.z ), hints_ );
 		}
 
 		osg::ShapeDrawable* operator()( const xo::cylinder& s ) {
-			return new osg::ShapeDrawable( new osg::Cylinder( osg::Vec3( 0.0f, 0.0f, 0.0f ), s.radius_, s.height_ ), hints_ );
+			return new osg::ShapeDrawable( new osg::Cylinder( center_, s.radius_, s.height_ ), hints_ );
 		}
 
 		osg::ShapeDrawable* operator()( const xo::capsule& s ) {
-			return new osg::ShapeDrawable( new osg::Capsule( osg::Vec3( 0.0f, 0.0f, 0.0f ), s.radius_, s.height_ ), hints_ );
+			return new osg::ShapeDrawable( new osg::Capsule( center_, s.radius_, s.height_ ), hints_ );
 		}
 
 		osg::ShapeDrawable* operator()( const xo::cone& s ) {
-			return new osg::ShapeDrawable( new osg::Cone( osg::Vec3( 0.0f, 0.0f, 0.0f ), s.radius_, s.height_ ), hints_ );
+			return new osg::ShapeDrawable( new osg::Cone( center_, s.radius_, s.height_ ), hints_ );
 		}
 
 		osg::ShapeDrawable* operator()( const xo::plane& s ) {
@@ -55,15 +55,16 @@ namespace vis
 		}
 
 		osg::TessellationHints* hints_;
+		osg::Vec3 center_;
 	};
 
-	mesh::mesh( node& parent, const shape& s, const color& col, float detail ) :
+	mesh::mesh( node& parent, const shape& s, const color& col, const vec3f& center, float detail ) :
 	node( &parent )
 	{
 		auto hints = new osg::TessellationHints;
 		hints->setDetailRatio( detail );
 
-		osg::ref_ptr< osg::ShapeDrawable > sd = std::visit( create_shape_visitor( hints ), s );
+		osg::ref_ptr< osg::ShapeDrawable > sd = std::visit( create_shape_visitor( hints, to_osg( center ) ), s );
 		sd->setColor( to_osg( col ) );
 		auto g = new osg::Geode;
 		g->addDrawable( sd );

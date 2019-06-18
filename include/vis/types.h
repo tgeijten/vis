@@ -28,4 +28,5 @@ namespace vis
 	using xo::degreef;
 	using xo::radianf;
 	using xo::index_t;
+	using namespace xo::literals;
 }
