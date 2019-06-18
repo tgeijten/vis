@@ -47,6 +47,6 @@ namespace vis
 
 	inline osg::Group& osg_group( handle< node > i ) { return osg_get< osg::Group >( i.value ); }
 	inline osg::Node& osg_node( handle< node > i ) { return osg_get< osg::Node >( i.value ); }
-	inline osg::PositionAttitudeTransform& osg_trans( handle< node >  i ) { return osg_get< osg::PositionAttitudeTransform >( i.value ); }
+	inline osg::PositionAttitudeTransform& osg_trans( handle< node > i ) { return osg_get< osg::PositionAttitudeTransform >( i.value ); }
 	inline osg::Material& osg_material( handle< material > i ) { return osg_get< osg::Material >( i.value ); }
 }
