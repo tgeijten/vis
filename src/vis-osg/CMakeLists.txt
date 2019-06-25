@@ -42,8 +42,11 @@ target_link_libraries(vis-osg
 include( PrecompiledHeaders )
 use_precompiled_headers( VIS_OSG_SOURCE_FILES "${CMAKE_CURRENT_SOURCE_DIR}/stdafx.h" "stdafx.cpp" 256 )
 
-source_group("vis" FILES ${VIS_INCLUDE_FILES})
-source_group("vis-osg" FILES ${VIS_OSG_SOURCE_FILES} ${VIS_OSG_INCLUDE_FILES})
+if (MSVC)
+	source_group("vis" FILES ${VIS_INCLUDE_FILES})
+	source_group("vis-osg" FILES ${VIS_OSG_SOURCE_FILES} ${VIS_OSG_INCLUDE_FILES})
+	target_compile_options( vis-osg PRIVATE "/MP" ) # multithreaded compilation on MSVC
+endif()
 
 # target properties
 set_target_properties(vis-osg PROPERTIES 
