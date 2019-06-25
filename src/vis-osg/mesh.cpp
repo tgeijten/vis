@@ -17,7 +17,7 @@ namespace vis
 	node( &parent )
 	{
 		osg::Node* file_node;
-		if ( filename.extension() == "vtp" )
+		if ( filename.extension_no_dot() == "vtp" )
 			file_node = read_vtp( filename );
 		else
 			file_node = osgDB::readNodeFile( filename.str() );
