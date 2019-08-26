@@ -17,7 +17,7 @@ namespace vis
 		vec3f dir = end_pos - begin_pos;
 		auto q = xo::quat_from_directions( vec3f::unit_z(), dir );
 		cylinder.pos_ori( begin_pos, q );
-		cylinder.scale( vec3f( 1, 1, dir.length() ) );
+		cylinder.scale( vec3f( 1, 1, xo::length( dir ) ) );
 
 		if ( end_cone.size() )
 			end_cone.pos_ori( end_pos, q );
