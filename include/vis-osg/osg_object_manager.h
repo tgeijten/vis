@@ -10,9 +10,11 @@
 #include <osg/Material>
 #include "xo/system/log.h"
 #include "xo/system/system_tools.h"
+#include "xo/xo_types.h"
 
 namespace vis
 {
+	// #todo: use 
 	struct VIS_API osg_object_manager
 	{
 	public:
@@ -39,7 +41,7 @@ namespace vis
 		return osg_object_manager::global_instance_.remove( i.value );
 	}
 
-	template< typename T > T& osg_get( uint32_t i ) {
+	template< typename T > T& osg_get( xo::uint32 i ) {
 		auto* obj = osg_object_manager::global_instance_.get( i );
 		xo_assert( obj );
 		return dynamic_cast<T&>( *obj );
