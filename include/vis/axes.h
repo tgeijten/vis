@@ -19,7 +19,7 @@ namespace vis
 		axes& operator=( axes&& ) = default;
 
 		bool show( bool s );
-		void pos_dir( const vec3f& pos, const xo::vec3_< vec3f >& dirs );
+		void pos_ofs( const vec3f& pos, const xo::vec3_< vec3f >& dirs );
 		
 	private:
 		xo::vec3_< mesh > arrows_;

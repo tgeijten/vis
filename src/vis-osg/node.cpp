@@ -98,8 +98,9 @@ namespace vis
 	void node::from_to_z( const vec3f& from, const vec3f& to )
 	{
 		vec3f delta = to - from;
+		auto l = normalize( delta );
 		pos_ori( from, xo::quat_from_directions( vec3f::unit_z(), delta ) );
-		scale( vec3f( 1, 1, xo::length( delta ) ) );
+		scale( vec3f( 1, 1, l ) );
 	}
 
 	void node::scale( const vec3f& s )
