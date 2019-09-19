@@ -59,12 +59,13 @@ namespace vis
 		return osg_group( node_id_ ).getNumChildren();
 	}
 
-	void node::show( bool show )
+	bool node::show( bool show )
 	{
 		// this resets any node mask related setting
 		// #todo: find a better way to show/hide nodes
 		auto& g = osg_group( node_id_ );
 		g.setNodeMask( show ? ~0 : 0 );
+		return show;
 	}
 
 	void node::set_material( material& m )

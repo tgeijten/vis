@@ -23,7 +23,7 @@ namespace vis
 		size_t size() const;
 		bool has_parent() const;
 
-		void show( bool show );
+		bool show( bool show );
 		void set_material( material& m );
 
 		void transform( const transformf& t );
