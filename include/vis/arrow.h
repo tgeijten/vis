@@ -17,6 +17,7 @@ namespace vis
 		arrow& operator=( arrow&& ) = default;
 
 		void pos( const vec3f& begin_pos, const vec3f& end_pos );
+		void pos_dir( const vec3f& pos, const vec3f& dir );
 		void set_color( const color& c );
 
 	private:

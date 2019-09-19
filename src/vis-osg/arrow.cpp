@@ -14,13 +14,16 @@ namespace vis
 
 	void arrow::pos( const vec3f& begin_pos, const vec3f& end_pos )
 	{
-		vec3f dir = end_pos - begin_pos;
-		auto q = xo::quat_from_directions( vec3f::unit_z(), dir );
-		cylinder.pos_ori( begin_pos, q );
-		cylinder.scale( vec3f( 1, 1, xo::length( dir ) ) );
+		pos_dir( begin_pos, end_pos - begin_pos );
+	}
 
+	void arrow::pos_dir( const vec3f& pos, const vec3f& dir )
+	{
+		auto q = xo::quat_from_directions( vec3f::unit_z(), dir );
+		cylinder.pos_ori( pos, q );
+		cylinder.scale( vec3f( 1, 1, xo::length( dir ) ) );
 		if ( end_cone.size() )
-			end_cone.pos_ori( end_pos, q );
+			end_cone.pos_ori( pos + dir, q );
 	}
 
 	void arrow::set_color( const color& c )
