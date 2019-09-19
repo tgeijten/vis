@@ -95,6 +95,13 @@ namespace vis
 		osg_trans( node_id_ ).setAttitude( to_osg( q ) );
 	}
 
+	void node::from_to_z( const vec3f& from, const vec3f& to )
+	{
+		vec3f delta = to - from;
+		pos_ori( from, xo::quat_from_directions( vec3f::unit_z(), delta ) );
+		scale( vec3f( 1, 1, xo::length( delta ) ) );
+	}
+
 	void node::scale( const vec3f& s )
 	{
 		osg_trans( node_id_ ).setScale( to_osg( s ) );

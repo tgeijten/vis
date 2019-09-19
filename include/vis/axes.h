@@ -1,6 +1,7 @@
 #pragma once
 
 #include "vis_api.h"
+#include "types.h"
 #include "mesh.h"
 #include "node.h"
 
@@ -17,12 +18,11 @@ namespace vis
 		axes( axes&& ) = default;
 		axes& operator=( axes&& ) = default;
 
-		void show( bool s );
+		bool show( bool s );
+		void pos_dir( const vec3f& pos, const xo::vec3_< vec3f >& dirs );
 		
 	private:
-		mesh x_arrow;
-		mesh y_arrow;
-		mesh z_arrow;
+		xo::vec3_< mesh > arrows_;
 	};
 }
  
