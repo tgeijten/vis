@@ -37,8 +37,8 @@ namespace vis
 		for ( size_t i = 0; i < points.size(); ++i )
 			points[ i ].pos( vec3f( *( b + i ) ) );
 		for ( size_t i = 0; i < cylinders.size(); ++i ) {
-			auto& start = *( b + i );
-			auto& end = *( b + i + 1 );
+			auto start = vec3f( *( b + i ) );
+			auto end = vec3f( *( b + i + 1 ) );
 			cylinders[ i ].from_to_z( start, end, relative_width );
 		}
 	}
