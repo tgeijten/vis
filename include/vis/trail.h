@@ -12,11 +12,6 @@ namespace vis
 		trail() : node( nullptr ), detail(), radius() {}
 		trail( node& parent, size_t num_points, float radius, color c, float detail = 0.5f );
 
-		trail( const trail& ) = delete;
-		trail& operator=( const trail& ) = delete;
-		trail( trail&& ) = default;
-		trail& operator=( trail&& ) = default;
-
 		template< typename It >
 		void set_points( It b, It e, float relative_width = 1.0f );
 
