@@ -5,6 +5,15 @@
 
 namespace vis
 {
+	struct VIS_API material_info
+	{
+		color diffuse_;
+		color specular_;
+		color ambient_;
+		color emissive_;
+		float shininess_;
+	};
+
 	class VIS_API material
 	{
 	public:
