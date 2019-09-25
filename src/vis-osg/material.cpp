@@ -4,16 +4,21 @@
 
 namespace vis
 {
-	material::material( color diffuse, color specular, float shininess, color ambient, color emissive ) :
-		material_id_( osg_add<material>( new osg::Material ) )
-	{
-		set( diffuse, specular, shininess, ambient, emissive );
-	}
+	material_info::material_info( const color& diffuse, const color& specular, float shininess, const color& ambient ) :
+		diffuse_( diffuse ),
+		ambient_( ambient ),
+		specular_( specular ),
+		shininess_( shininess )
+	{}
 
-	material::material( color diffuse, float specular, float shininess, float ambient, float emissive ) :
+	material_info::material_info( const color& diffuse, float specular, float shininess, float ambient ) :
+		material_info( diffuse, specular* color::white(), shininess, ambient* diffuse )
+	{}
+
+	material::material( const material_info& mi ) :
 		material_id_( osg_add<material>( new osg::Material ) )
 	{
-		set( diffuse, specular, shininess, ambient, emissive );
+		set( mi );
 	}
 
 	material::~material()
@@ -30,24 +35,14 @@ namespace vis
 		return m;
 	}
 
-	void material::set( color diffuse, color specular, float shininess, color ambient, color emissive )
+	void material::set( const material_info& mi )
 	{
 		auto& m = osg_material( material_id_ );
-		m.setDiffuse( osg::Material::FRONT_AND_BACK, to_osg( diffuse ) );
-		m.setSpecular( osg::Material::FRONT_AND_BACK, to_osg( specular ) );
-		m.setAmbient( osg::Material::FRONT_AND_BACK, to_osg( ambient ) );
-		m.setEmission( osg::Material::FRONT_AND_BACK, to_osg( emissive ) );
-		m.setShininess( osg::Material::FRONT_AND_BACK, shininess );
-	}
-
-	void material::set( color diffuse, float specular, float shininess, float ambient, float emissive )
-	{
-		auto& m = osg_material( material_id_ );
-		m.setDiffuse( osg::Material::FRONT_AND_BACK, to_osg( diffuse ) );
-		m.setSpecular( osg::Material::FRONT_AND_BACK, osg::Vec4( specular, specular, specular, 1 ) );
-		m.setAmbient( osg::Material::FRONT_AND_BACK, to_osg( diffuse ) * ambient );
-		m.setEmission( osg::Material::FRONT_AND_BACK, to_osg( diffuse ) * emissive );
-		m.setShininess( osg::Material::FRONT_AND_BACK, shininess );
+		m.setDiffuse( osg::Material::FRONT_AND_BACK, to_osg( mi.diffuse_ ) );
+		m.setSpecular( osg::Material::FRONT_AND_BACK, to_osg( mi.specular_ ) );
+		m.setAmbient( osg::Material::FRONT_AND_BACK, to_osg( mi.ambient_ ) );
+		m.setEmission( osg::Material::FRONT_AND_BACK, osg::Vec4( 0, 0, 0, 0 ) ); // we don't use this
+		m.setShininess( osg::Material::FRONT_AND_BACK, mi.shininess_);
 	}
 
 	void material::diffuse( color col )

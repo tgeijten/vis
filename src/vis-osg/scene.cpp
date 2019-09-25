@@ -11,7 +11,7 @@
 
 namespace vis
 {
-	scene::scene( bool use_shadows ) :
+	scene::scene( bool use_shadows, float ambient_intensity ) :
 	node()
 	{
 		if ( use_shadows )
@@ -51,7 +51,8 @@ namespace vis
 
 		// set ambient intensity (for some reason, this requires yet another light class)
 		osg::ref_ptr< osg::LightModel > lm = new osg::LightModel;
-		lm->setAmbientIntensity( osg::Vec4( 0.333, 0.333, 0.333, 1 ) );
+		//lm->setAmbientIntensity( osg::Vec4( 0.333, 0.333, 0.333, 1 ) );
+		lm->setAmbientIntensity( osg::Vec4( ambient_intensity, ambient_intensity, ambient_intensity, 1 ) );
 		node.getOrCreateStateSet()->setAttribute( lm );
 	}
 
