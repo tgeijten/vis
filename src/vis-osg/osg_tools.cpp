@@ -23,8 +23,8 @@ namespace vis
 	{
 		xo::prop_node root_pn = load_file( filename, "xml" );
 		xo::prop_node& poly_pn = root_pn[ "VTKFile" ][ "PolyData" ][ "Piece" ];
-		auto point_count = poly_pn.get< int >( "NumberOfPoints");
-		auto poly_count = poly_pn.get< int >( "NumberOfPolys" );
+		auto point_count = poly_pn.get<size_t>( "NumberOfPoints");
+		auto poly_count = poly_pn.get<size_t>( "NumberOfPolys" );
 
 		// create normal and vertex array
 		osg::ref_ptr<osg::Vec3Array> normals = new osg::Vec3Array( point_count );
