@@ -30,7 +30,7 @@ namespace vis
 		void pos( const vec3f& p );
 		void ori( const quatf& q );
 		void pos_ori( const vec3f& p, const quatf& q ) { pos( p ); ori( q ); }
-		void from_to_z( const vec3f& from, const vec3f& to );
+		void from_to_z( const vec3f& from, const vec3f& to, float width = 1.0f );
 		void scale( const vec3f& s );
 
 		const handle<node>& node_id() const { return node_id_; }
