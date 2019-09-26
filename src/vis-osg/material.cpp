@@ -6,9 +6,9 @@ namespace vis
 {
 	material_info::material_info( const color& diffuse, const color& specular, float shininess, const color& ambient ) :
 		diffuse_( diffuse ),
-		ambient_( ambient ),
 		specular_( specular ),
-		shininess_( shininess )
+		shininess_( shininess ),
+		ambient_( ambient )
 	{}
 
 	material_info::material_info( const color& diffuse, float specular, float shininess, float ambient ) :

@@ -6,9 +6,9 @@ namespace vis
 {
 	trail::trail( node& parent, size_t num_points, float radius, color c, float detail ) :
 		node( &parent ),
-		radius( radius ),
-		col( c ),
-		detail( detail )
+		radius_( radius ),
+		color_( c ),
+		detail_( detail )
 	{
 		resize( num_points );
 	}
@@ -19,9 +19,9 @@ namespace vis
 
 		// add points
 		while ( points.size() < num_points )
-			points.emplace_back( *this, xo::sphere{ radius * 1.02f }, col, vec3f::zero(), detail );
+			points.emplace_back( *this, xo::sphere{ radius_ * 1.02f }, color_, vec3f::zero(), detail_ );
 		while ( cylinders.size() < num_cylinders )
-			cylinders.emplace_back( *this, xo::cylinder{ radius, 1.0f }, col, vec3f( 0, 0, 0.5f ), detail );
+			cylinders.emplace_back( *this, xo::cylinder{ radius_, 1.0f }, color_, vec3f( 0, 0, 0.5f ), detail_ );
 
 		// remove points
 		while ( points.size() > num_points )
