@@ -80,6 +80,6 @@ namespace vis
 
 	void mesh::set_color( const color& c )
 	{
-		dynamic_cast<osg::ShapeDrawable&>( *osg_get< osg::Geode >( mesh_id_.value ).getDrawable( 0 ) ).setColor( to_osg( c ) );
+		dynamic_cast<osg::ShapeDrawable&>( *osg_get< osg::Geode >( mesh_id_.value() ).getDrawable( 0 ) ).setColor( to_osg( c ) );
 	}
 }

@@ -14,7 +14,7 @@
 
 namespace vis
 {
-	// #todo: use 
+	// #todo: use xo::proxy
 	struct VIS_API osg_object_manager
 	{
 	public:
@@ -33,12 +33,12 @@ namespace vis
 
 	template< typename T > handle< T > osg_add( osg::Object* o ) {
 		auto idx = osg_object_manager::global_instance_.add( o );
-		//xo::log::debug( "Added ", xo::clean_type_name<T>(), idx );
+		//xo::log::debug( "Added ", xo::get_clean_type_name<T>(), idx );
 		return handle<T>( idx );
 	}
 	template< typename T > void osg_remove( handle< T > i ) {
-		//xo::log::debug( "Removing ", xo::clean_type_name<T>(), i.value );
-		return osg_object_manager::global_instance_.remove( i.value );
+		//xo::log::debug( "Removing ", xo::get_clean_type_name<T>(), i.value() );
+		return osg_object_manager::global_instance_.remove( i.value() );
 	}
 
 	template< typename T > T& osg_get( xo::uint32 i ) {
@@ -47,8 +47,8 @@ namespace vis
 		return dynamic_cast<T&>( *obj );
 	}
 
-	inline osg::Group& osg_group( handle< node > i ) { return osg_get< osg::Group >( i.value ); }
-	inline osg::Node& osg_node( handle< node > i ) { return osg_get< osg::Node >( i.value ); }
-	inline osg::PositionAttitudeTransform& osg_trans( handle< node > i ) { return osg_get< osg::PositionAttitudeTransform >( i.value ); }
-	inline osg::Material& osg_material( handle< material > i ) { return osg_get< osg::Material >( i.value ); }
+	inline osg::Group& osg_group( handle< node > i ) { return osg_get< osg::Group >( i.value() ); }
+	inline osg::Node& osg_node( handle< node > i ) { return osg_get< osg::Node >( i.value() ); }
+	inline osg::PositionAttitudeTransform& osg_trans( handle< node > i ) { return osg_get< osg::PositionAttitudeTransform >( i.value() ); }
+	inline osg::Material& osg_material( handle< material > i ) { return osg_get< osg::Material >( i.value() ); }
 }

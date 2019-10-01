@@ -20,13 +20,12 @@ namespace vis
 	class VIS_API material
 	{
 	public:
-		material() {}
+		material() = default;
 		material( const material_info& mi );
-
 		material( const material& ) = delete;
 		material& operator=( const material& ) = delete;
-		material( material&& ) = default;
-		material& operator=( material&& ) = default;
+		material( material&& o ) noexcept : material_id_( o.material_id_ ) { o.material_id_.reset(); }
+		material& operator=( material&& o ) noexcept { material_id_.swap( o.material_id_ ); return *this; }
 
 		~material();
 

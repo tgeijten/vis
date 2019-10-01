@@ -9,8 +9,7 @@ namespace vis
 {
 	int light::unique_light_number = 0;
 
-	light::light( scene& parent, const vec3f& pos, const color& col ) :
-	node( nullptr )
+	light::light( scene& parent, const vec3f& pos, const color& col )
 	{
 		auto l = new osg::Light;
 		l->setLightNum( unique_light_number++ );
@@ -34,17 +33,17 @@ namespace vis
 
 	int light::get_number()
 	{
-		return osg_get< osg::LightSource >( light_id_.value ).getLight()->getLightNum();
+		return osg_get< osg::LightSource >( light_id_.value() ).getLight()->getLightNum();
 	}
 
 	void light::pos( const vec3f& pos )
 	{
-		osg_get< osg::LightSource >( light_id_.value ).getLight()->setPosition( osg::Vec4f( pos.x, pos.y, pos.z, 1 ) );
+		osg_get< osg::LightSource >( light_id_.value() ).getLight()->setPosition( osg::Vec4f( pos.x, pos.y, pos.z, 1 ) );
 	}
 
 	void light::attenuation( float c, float l, float q )
 	{
-		auto& light_source = osg_get< osg::LightSource >( light_id_.value );
+		auto& light_source = osg_get< osg::LightSource >( light_id_.value() );
 		light_source.getLight()->setConstantAttenuation( c );
 		light_source.getLight()->setLinearAttenuation( l );
 		light_source.getLight()->setQuadraticAttenuation( q );

@@ -11,8 +11,8 @@ namespace vis
 		node( node* parent = nullptr );
 		node( const node& ) = delete;
 		node& operator=( const node& ) = delete;
-		node( node&& ) = default;
-		node& operator=( node&& ) = default;
+		node( node&& o ) noexcept : node_id_( o.node_id_ ) { o.node_id_.reset(); }
+		node& operator=( node&& o ) noexcept { node_id_.swap( o.node_id_ ); return *this; }
 		~node();
 
 		void attach( node& o );

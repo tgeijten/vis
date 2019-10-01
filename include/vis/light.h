@@ -5,15 +5,15 @@
 
 namespace vis
 {
-	class VIS_API light : public node
+	class VIS_API light
 	{
 	public:
-		light() : light_id_() {}
+		light() = default;
 		light( scene& parent, const vec3f& pos, const color& col );
 		light( const light& ) = delete;
 		light& operator=( const light& ) = delete;
-		light( light&& ) = default;
-		light& operator=( light&& ) = default;
+		light( light&& o ) noexcept : light_id_( o.light_id_ ) { o.light_id_.reset(); }
+		light& operator=( light&& o ) noexcept { light_id_.swap( o.light_id_ ); return *this; }
 
 		int get_number();
 

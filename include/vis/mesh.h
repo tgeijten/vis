@@ -6,6 +6,7 @@
 
 #include "xo/filesystem/path.h"
 #include "xo/shape/shape.h"
+#include "xo/system/log.h"
 
 namespace vis
 {
@@ -17,8 +18,8 @@ namespace vis
 		mesh( node& parent, const xo::shape& shape, const color& col, const vec3f& center = vec3f::zero(), float detail = 0.75f );
 		mesh( const mesh& ) = delete;
 		mesh& operator=( const mesh& ) = delete;
-		mesh( mesh&& ) = default;
-		mesh& operator=( mesh&& ) = default;
+		mesh( mesh&& o ) noexcept : node( std::move( o ) ), mesh_id_( o.mesh_id_ ) { o.mesh_id_.reset(); }
+		mesh& operator=( mesh&& o ) noexcept { node::operator=( std::move( o ) ); mesh_id_.swap( o.mesh_id_ ); return *this; }
 		~mesh();
 
 		void set_color( const color& c );
