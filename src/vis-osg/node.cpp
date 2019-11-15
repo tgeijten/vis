@@ -95,6 +95,13 @@ namespace vis
 		osg_trans( node_id_ ).setAttitude( to_osg( q ) );
 	}
 
+	void node::pos_ori( const vec3f& p, const quatf& q )
+	{
+		auto& transnode = osg_trans( node_id_ );
+		transnode.setPosition( to_osg( p ) );
+		transnode.setAttitude( to_osg( q ) );
+	}
+
 	void node::from_to_z( const vec3f& from, const vec3f& to, float width )
 	{
 		vec3f delta = to - from;
