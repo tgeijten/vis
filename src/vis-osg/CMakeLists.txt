@@ -13,15 +13,16 @@ set_target_properties(vis-osg PROPERTIES CXX_STANDARD 17 CXX_STANDARD_REQUIRED O
 
 # OpenSceneGraph
 set(OSG_DIR "" CACHE PATH "Installation directory of OpenSceneGraph")
-FIND_PACKAGE( osg )
-FIND_PACKAGE( osgwidget )
-FIND_PACKAGE( osgqt )
-FIND_PACKAGE( osgga )
-FIND_PACKAGE( osgviewer )
-FIND_PACKAGE( osgutil )
-FIND_PACKAGE( osgdb )
-FIND_PACKAGE( osgshadow )
-FIND_PACKAGE( OpenThreads )
+FIND_PACKAGE( OpenSceneGraph REQUIRED
+  osgWidget
+  osgQt
+  osgGA
+  osgViewer
+  osgUtil
+  osgDB
+  osgShadow
+  OpenThreads )
+
 
 target_include_directories(vis-osg PUBLIC ${VIS_INCLUDE_DIR})
 target_include_directories(vis-osg PRIVATE ${OSG_INCLUDE_DIR})
