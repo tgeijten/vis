@@ -19,11 +19,14 @@ namespace vis
 		osg::Node* file_node;
 		if ( filename.extension_no_dot() == "vtp" )
 			file_node = read_vtp( filename );
-		else
+		else // #todo #issue87: add support for .obj and other formats
 			file_node = osgDB::readNodeFile( filename.str() );
 
-		mesh_id_ = osg_add<mesh>( file_node );
-		osg_group( node_id_ ).addChild( file_node );
+		if ( file_node )
+		{
+			mesh_id_ = osg_add<mesh>( file_node );
+			osg_group( node_id_ ).addChild( file_node );
+		}
 	}
 
 	struct create_shape_visitor {
