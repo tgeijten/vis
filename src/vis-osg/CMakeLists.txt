@@ -12,7 +12,6 @@ add_library(vis-osg SHARED ${VIS_INCLUDE_FILES} ${VIS_OSG_SOURCE_FILES} ${VIS_OS
 set_target_properties(vis-osg PROPERTIES CXX_STANDARD 17 CXX_STANDARD_REQUIRED ON)
 
 # OpenSceneGraph
-set(OSG_DIR "" CACHE PATH "Installation directory of OpenSceneGraph")
 FIND_PACKAGE( OpenSceneGraph REQUIRED
   osg
   osgWidget
@@ -23,7 +22,6 @@ FIND_PACKAGE( OpenSceneGraph REQUIRED
   osgDB
   osgShadow
   OpenThreads )
-
 
 target_include_directories(vis-osg PUBLIC ${VIS_INCLUDE_DIR})
 target_include_directories(vis-osg PRIVATE ${OSG_INCLUDE_DIR})
