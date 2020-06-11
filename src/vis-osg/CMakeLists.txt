@@ -39,10 +39,17 @@ target_link_libraries(vis-osg
 	${OPENTHREADS_LIBRARIES}
 	)
 
-include( PrecompiledHeaders )
-use_precompiled_headers( VIS_OSG_SOURCE_FILES "${CMAKE_CURRENT_SOURCE_DIR}/stdafx.h" "stdafx.cpp" 256 )
+#include( PrecompiledHeaders )
+#use_precompiled_headers( VIS_OSG_SOURCE_FILES "${CMAKE_CURRENT_SOURCE_DIR}/stdafx.h" "stdafx.cpp" 256 )
 
 if (MSVC)
+	target_precompile_headers(vis-osg PRIVATE
+		<string> <vector> <algorithm> <memory> <limits> <fstream>
+		<osg/Vec3f>	<osg/Vec4f> <osg/Quat> <osg/Group> <osg/Geode> <osg/Geometry> <osg/Material> <osg/PositionAttitudeTransform>
+	)
+	file (GLOB_RECURSE PRECOMPILED_HEADER_FILES ${CMAKE_CURRENT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/cmake_pch.*)
+	source_group("CMakePCH" FILES ${PRECOMPILED_HEADER_FILES})
+
 	source_group("vis" FILES ${VIS_INCLUDE_FILES})
 	source_group("vis-osg" FILES ${VIS_OSG_SOURCE_FILES} ${VIS_OSG_INCLUDE_FILES})
 	target_compile_options( vis-osg PRIVATE "/MP" ) # multithreaded compilation on MSVC
