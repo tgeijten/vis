@@ -1,4 +1,4 @@
-cmake_minimum_required( VERSION 3.12 )
+cmake_minimum_required( VERSION 3.10 )
 
 find_path( VIS_INCLUDE_DIR NAMES "vis/mesh.h" PATHS ${CMAKE_CURRENT_SOURCE_DIR}/../../include )
 
