@@ -1,15 +1,25 @@
 #pragma once
 
-#include "osg/Group"
 #include "mesh.h"
 #include "node.h"
+#include "types.h"
+#include <vector>
+#include "material.h"
 
 namespace vis
 {
+	struct VIS_API trail_info
+	{
+		float radius_ = 0.1f;
+		color color;
+		float detail_ = 0.5f;
+	};
+
 	class VIS_API trail : public node
 	{
 	public:
 		trail() : node( nullptr ), radius_(), color_(), detail_() {}
+		trail( node& parent, const trail_info& ti );
 		trail( node& parent, size_t num_points, float radius, color c, float detail = 0.5f );
 
 		template< typename It >
@@ -26,7 +36,7 @@ namespace vis
 	};
 
 	template< typename It >
-	void vis::trail::set_points( It b, It e, float relative_width )
+	void trail::set_points( It b, It e, float relative_width )
 	{
 		if ( size_t( e - b ) != points.size() )
 			resize( e - b );

@@ -4,6 +4,13 @@
 
 namespace vis
 {
+	trail::trail( node& parent, const trail_info& ti ) :
+		node( &parent ),
+		radius_( ti.radius_ ),
+		color_( ti.color ),
+		detail_( ti.detail_ )
+	{}
+
 	trail::trail( node& parent, size_t num_points, float radius, color c, float detail ) :
 		node( &parent ),
 		radius_( radius ),
