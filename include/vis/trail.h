@@ -11,7 +11,7 @@ namespace vis
 	struct VIS_API trail_info
 	{
 		float radius_ = 0.1f;
-		color color;
+		color color_;
 		float detail_ = 0.5f;
 	};
 

@@ -7,7 +7,7 @@ namespace vis
 	trail::trail( node& parent, const trail_info& ti ) :
 		node( &parent ),
 		radius_( ti.radius_ ),
-		color_( ti.color ),
+		color_( ti.color_ ),
 		detail_( ti.detail_ )
 	{}
 
