@@ -49,7 +49,7 @@ namespace vis
 				// this is the last ref, so remove from all parents
 				while ( group.getNumParents() > 0 )
 					group.getParent( 0 )->removeChild( &group );
-				osg_remove( node_id_ );
+				osg_remove( std::move( node_id_ ) );
 			}
 		}
 	}

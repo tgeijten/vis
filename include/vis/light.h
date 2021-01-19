@@ -10,10 +10,9 @@ namespace vis
 	public:
 		light() = default;
 		light( scene& parent, const vec3f& pos, const color& col );
-		light( const light& ) = delete;
-		light& operator=( const light& ) = delete;
-		light( light&& o ) noexcept : light_id_( o.light_id_ ) { o.light_id_.reset(); }
-		light& operator=( light&& o ) noexcept { light_id_.swap( o.light_id_ ); return *this; }
+		light( light&& o ) noexcept = default;
+		light& operator=( light&& o ) noexcept = default;
+		~light();
 
 		int get_number();
 
@@ -21,7 +20,7 @@ namespace vis
 		void attenuation( float c, float l, float q );
 
 	private:
-		handle<light> light_id_;
+		unique_handle<light> light_id_;
 		static int unique_light_number;
 	};
 }

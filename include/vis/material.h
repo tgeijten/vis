@@ -22,11 +22,8 @@ namespace vis
 	public:
 		material() = default;
 		material( const material_info& mi );
-		material( const material& ) = delete;
-		material& operator=( const material& ) = delete;
-		material( material&& o ) noexcept : material_id_( o.material_id_ ) { o.material_id_.reset(); }
-		material& operator=( material&& o ) noexcept { material_id_.swap( o.material_id_ ); return *this; }
-
+		material( material&& o ) noexcept = default;
+		material& operator=( material&& o ) noexcept = default;
 		~material();
 
 		material clone() const;
@@ -38,9 +35,9 @@ namespace vis
 		void emissive( color col );
 		void shininess( float s );
 
-		const handle<material>& material_id() { return material_id_; }
+		const unique_handle<material>& material_id() { return material_id_; }
 
 	private:
-		handle<material> material_id_;
+		unique_handle<material> material_id_;
 	};
 }

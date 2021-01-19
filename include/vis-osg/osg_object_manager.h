@@ -23,6 +23,9 @@ namespace vis
 		index_t add( osg::Object* o );
 		void remove( index_t i );
 		osg::Object* get( index_t i ) { xo_assert( i < data_.size() ); return data_[ i ]; }
+		size_t size() const { return data_.size(); }
+		size_t min_size() const;
+		void shrink_to_fit();
 
 		static osg_object_manager global_instance_;
 
@@ -31,13 +34,13 @@ namespace vis
 		std::vector< osg::ref_ptr< osg::Object > > data_;
 	};
 
-	template< typename T > handle< T > osg_add( osg::Object* o ) {
+	template< typename T > unique_handle<T> osg_add( osg::Object* o ) {
 		auto idx = osg_object_manager::global_instance_.add( o );
-		//xo::log::debug( "Added ", xo::get_clean_type_name<T>(), idx );
-		return handle<T>( idx );
+		xo::log::debug( "Added ", xo::get_clean_type_name<T>(), idx, " size=", osg_object_manager::global_instance_.min_size() );
+		return unique_handle<T>( idx );
 	}
-	template< typename T > void osg_remove( handle< T > i ) {
-		//xo::log::debug( "Removing ", xo::get_clean_type_name<T>(), i.value() );
+	template< typename T > void osg_remove( unique_handle<T> i ) {
+		xo::log::debug( "Removing ", xo::get_clean_type_name<T>(), i.value(), " size=", osg_object_manager::global_instance_.min_size() );
 		return osg_object_manager::global_instance_.remove( i.value() );
 	}
 
@@ -47,8 +50,8 @@ namespace vis
 		return dynamic_cast<T&>( *obj );
 	}
 
-	inline osg::Group& osg_group( handle< node > i ) { return osg_get< osg::Group >( i.value() ); }
-	inline osg::Node& osg_node( handle< node > i ) { return osg_get< osg::Node >( i.value() ); }
-	inline osg::PositionAttitudeTransform& osg_trans( handle< node > i ) { return osg_get< osg::PositionAttitudeTransform >( i.value() ); }
-	inline osg::Material& osg_material( handle< material > i ) { return osg_get< osg::Material >( i.value() ); }
+	inline osg::Group& osg_group( const unique_handle< node >& i ) { return osg_get< osg::Group >( i.value() ); }
+	inline osg::Node& osg_node( const unique_handle< node >& i ) { return osg_get< osg::Node >( i.value() ); }
+	inline osg::PositionAttitudeTransform& osg_trans( const unique_handle< node >& i ) { return osg_get< osg::PositionAttitudeTransform >( i.value() ); }
+	inline osg::Material& osg_material( const unique_handle< material >& i ) { return osg_get< osg::Material >( i.value() ); }
 }

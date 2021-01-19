@@ -78,7 +78,7 @@ namespace vis
 	mesh::~mesh()
 	{
 		if ( mesh_id_ )
-			osg_remove( mesh_id_ );
+			osg_remove( std::move( mesh_id_ ) );
 	}
 
 	void mesh::set_color( const color& c )

@@ -111,4 +111,9 @@ namespace vis
 		set_shadow_mask( geode, true, false );
 		osg_group( node_id_ ).addChild( geode );
 	}
+
+	plane::~plane()
+	{
+		// #todo: delete geometry?
+	}
 }

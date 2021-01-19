@@ -56,8 +56,8 @@ namespace vis
 		node.getOrCreateStateSet()->setAttribute( lm );
 	}
 
-	vis::light scene::add_light( const vec3f& pos, const color& c )
+	scene::~scene()
 	{
-		return light( *this, pos, c );
+		// #todo: cleanup scene (and lights?) here?
 	}
 }

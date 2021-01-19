@@ -10,7 +10,6 @@ namespace vis
 	{
 	public:
 		scene( bool use_shadows, float ambient_intensity );
-
-		light add_light( const vec3f& pos, const color& c );
+		~scene();
 	};
 }

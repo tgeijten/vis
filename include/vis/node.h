@@ -9,10 +9,8 @@ namespace vis
 	{
 	public:
 		node( node* parent = nullptr );
-		node( const node& ) = delete;
-		node& operator=( const node& ) = delete;
-		node( node&& o ) noexcept : node_id_( o.node_id_ ) { o.node_id_.reset(); }
-		node& operator=( node&& o ) noexcept { node_id_.swap( o.node_id_ ); return *this; }
+		node( node&& o ) noexcept = default;
+		node& operator=( node&& o ) noexcept = default;
 		~node();
 
 		void attach( node& o );
@@ -33,9 +31,9 @@ namespace vis
 		void from_to_z( const vec3f& from, const vec3f& to, float width = 1.0f );
 		void scale( const vec3f& s );
 
-		const handle<node>& node_id() const { return node_id_; }
+		const unique_handle<node>& node_id() const { return node_id_; }
 
 	protected:
-		handle<node> node_id_;
+		unique_handle<node> node_id_;
 	};
 }

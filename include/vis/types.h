@@ -4,8 +4,8 @@
 #include "xo/geometry/vec4_type.h"
 #include "xo/geometry/quat_type.h"
 #include "xo/geometry/transform.h"
-#include "xo/utility/handle.h"
 #include "xo/utility/color.h"
+#include "unique_handle.h"
 
 namespace vis
 {
@@ -20,7 +20,6 @@ namespace vis
 	class material;
 
 	using xo::color;
-	using xo::handle;
 	using xo::vec3f;
 	using xo::vec4f;
 	using xo::quatf;

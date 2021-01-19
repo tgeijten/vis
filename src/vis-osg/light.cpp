@@ -31,6 +31,11 @@ namespace vis
 		light_id_ = osg_add<light>( light_source );
 	}
 
+	light::~light()
+	{
+		// #todo: cleanup light here?
+	}
+
 	int light::get_number()
 	{
 		return osg_get< osg::LightSource >( light_id_.value() ).getLight()->getLightNum();

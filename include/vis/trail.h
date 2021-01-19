@@ -8,31 +8,51 @@
 
 namespace vis
 {
-	struct VIS_API trail_info
+	struct trail_info
 	{
 		float radius_ = 0.1f;
 		color color_;
 		float detail_ = 0.5f;
 	};
 
-	class VIS_API trail : public node
+	class trail : public node
 	{
 	public:
 		trail() : node( nullptr ), radius_(), color_(), detail_() {}
-		trail( node& parent, const trail_info& ti );
-		trail( node& parent, size_t num_points, float radius, color c, float detail = 0.5f );
+
+		trail( node& parent, const trail_info& ti ) :
+			node( &parent ),
+			radius_( ti.radius_ ),
+			color_( ti.color_ ),
+			detail_( ti.detail_ )
+		{}
 
 		template< typename It >
 		void set_points( It b, It e, float relative_width = 1.0f );
 
 	private:
-		void resize( size_t num_points );
-
 		float radius_;
 		color color_;
 		float detail_;
 		std::vector< mesh > points;
 		std::vector< mesh > cylinders;
+
+		void resize( size_t num_points ) {
+			size_t num_cylinders = num_points > 0 ? num_points - 1 : 0;
+
+			// add points
+			while ( points.size() < num_points )
+				points.emplace_back( *this, xo::sphere{ radius_ * 1.02f }, color_, vec3f::zero(), detail_ );
+			while ( cylinders.size() < num_cylinders )
+				cylinders.emplace_back( *this, xo::cylinder{ radius_, 1.0f }, color_, vec3f( 0, 0, 0.5f ), detail_ );
+
+			// remove points
+			while ( points.size() > num_points )
+				points.pop_back();
+
+			while ( cylinders.size() > num_cylinders )
+				cylinders.pop_back();
+		}
 	};
 
 	template< typename It >
@@ -50,4 +70,5 @@ namespace vis
 			cylinders[ i ].from_to_z( start, end, relative_width );
 		}
 	}
+
 }

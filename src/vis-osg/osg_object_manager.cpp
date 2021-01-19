@@ -6,7 +6,7 @@ namespace vis
 	osg_object_manager::osg_object_manager() : idx_( 0 )
 	{}
 
-	vis::index_t osg_object_manager::add( osg::Object* o )
+	index_t osg_object_manager::add( osg::Object* o )
 	{
 		if ( idx_ == data_.size() )
 		{
@@ -35,8 +35,23 @@ namespace vis
 		xo_assert( data_[ i ] );
 		data_[ i ] = nullptr;
 		if ( i < idx_ )
-			idx_ = i;
+			idx_ = i; // set next idx
+
+		// #todo: shrink_to_fit?
 	}
 
-	vis::osg_object_manager osg_object_manager::global_instance_;
+	size_t osg_object_manager::min_size() const
+	{
+		auto it = data_.rbegin();
+		while ( it != data_.rend() && !*it )
+			++it;
+		return data_.rend() - it;
+	}
+
+	void osg_object_manager::shrink_to_fit()
+	{
+		data_.resize( min_size() );
+	}
+
+	osg_object_manager osg_object_manager::global_instance_;
 }

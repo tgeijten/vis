@@ -24,7 +24,7 @@ namespace vis
 	material::~material()
 	{
 		if ( material_id_ )
-			osg_remove( material_id_ );
+			osg_remove( std::move( material_id_ ) );
 	}
 
 	material material::clone() const
@@ -32,7 +32,7 @@ namespace vis
 		auto cloned_osg = new osg::Material( osg_material( material_id_ ), osg::CopyOp::DEEP_COPY_ALL );
 		material m;
 		m.material_id_ = osg_add<material>( cloned_osg );
-		return m;
+		return std::move( m );
 	}
 
 	void material::set( const material_info& mi )
