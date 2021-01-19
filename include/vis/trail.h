@@ -42,9 +42,9 @@ namespace vis
 
 			// add points
 			while ( points.size() < num_points )
-				points.emplace_back( *this, xo::sphere{ radius_ * 1.02f }, color_, vec3f::zero(), detail_ );
+				points.emplace_back( *this, vis::shape_info{ xo::sphere{ radius_ * 1.02f }, color_, vec3f::zero(), detail_ }  );
 			while ( cylinders.size() < num_cylinders )
-				cylinders.emplace_back( *this, xo::cylinder{ radius_, 1.0f }, color_, vec3f( 0, 0, 0.5f ), detail_ );
+				cylinders.emplace_back( *this, vis::shape_info{ xo::cylinder{ radius_, 1.0f }, color_, vec3f( 0, 0, 0.5f ), detail_ } );
 
 			// remove points
 			while ( points.size() > num_points )
@@ -70,5 +70,4 @@ namespace vis
 			cylinders[ i ].from_to_z( start, end, relative_width );
 		}
 	}
-
 }

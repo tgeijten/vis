@@ -10,12 +10,19 @@
 
 namespace vis
 {
+	struct shape_info {
+		xo::shape shape_;
+		color color_;
+		vec3f& center_ = vec3f::zero();
+		float detail_ = 0.75f;
+	};
+
 	class VIS_API mesh : public node
 	{
 	public:
 		mesh() = default;
 		mesh( node& parent, const xo::path& filename );
-		mesh( node& parent, const xo::shape& shape, const color& col, const vec3f& center = vec3f::zero(), float detail = 0.75f );
+		mesh( node& parent, const shape_info& info );
 		mesh( mesh&& o ) noexcept = default;
 		mesh& operator=( mesh&& o ) noexcept = default;
 		~mesh();

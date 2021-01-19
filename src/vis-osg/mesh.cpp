@@ -61,14 +61,14 @@ namespace vis
 		osg::Vec3 center_;
 	};
 
-	mesh::mesh( node& parent, const shape& s, const color& col, const vec3f& center, float detail ) :
+	mesh::mesh( node& parent, const shape_info& info ) :
 	node( &parent )
 	{
 		auto hints = new osg::TessellationHints;
-		hints->setDetailRatio( detail );
+		hints->setDetailRatio( info.detail_ );
 
-		osg::ref_ptr< osg::ShapeDrawable > sd = std::visit( create_shape_visitor( hints, to_osg( center ) ), s );
-		sd->setColor( to_osg( col ) );
+		osg::ref_ptr< osg::ShapeDrawable > sd = std::visit( create_shape_visitor( hints, to_osg( info.center_ ) ), info.shape_ );
+		sd->setColor( to_osg( info.color_ ) );
 		auto g = new osg::Geode;
 		g->addDrawable( sd );
 		mesh_id_ = osg_add<mesh>( g );

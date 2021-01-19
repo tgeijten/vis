@@ -6,14 +6,22 @@
 
 namespace vis
 {
+	struct arrow_info
+	{
+		float shaft_radius_;
+		float head_radius_;
+		color color_;
+		float detail_ = 0.5f;
+	};
+
 	class arrow : public node
 	{
 	public:
 		arrow() = default;
-		arrow( node& parent, float radius, float head_radius, const color& c, float detail = 0.5f ) :
+		arrow( node& parent, const arrow_info& info ) :
 			node( &parent ),
-			cylinder( *this, xo::cylinder{ radius, 1 }, c, vec3f( 0, 0, 0.5f ), detail ),
-			end_cone( *this, xo::cone{ head_radius, head_radius * 2 }, c, vec3f::zero(), detail )
+			cylinder( *this, shape_info{ xo::cylinder{ info.shaft_radius_, 1 }, info.color_, vec3f( 0, 0, 0.5f ), info.detail_ } ),
+			end_cone( *this, shape_info{ xo::cone{ info.head_radius_, info.head_radius_ * 2 }, info.color_, vec3f::zero(), info.detail_ } )
 		{}
 
 		void pos( const vec3f& begin_pos, const vec3f& end_pos ) {

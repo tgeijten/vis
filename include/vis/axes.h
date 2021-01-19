@@ -7,17 +7,22 @@
 
 namespace vis
 {
+	struct axes_info {
+		vec3f length_ = vec3f::diagonal( 0.1f );
+		float radius_ = 0.005f;
+		float detail_ = 0.5f;
+	};
+
 	class axes : public node
 	{
 	public:
 		axes() = default;
-		axes( node& parent, vec3f length, float detail ) : axes( parent, length, 0.005f, detail ) {}
-		axes( node& parent, vec3f length, float radius, float detail ) :
+		axes( node& parent, const axes_info& info ) :
 			node( &parent ),
 			arrows_(
-				mesh( *this, xo::capsule{ radius, length.x }, color::red(), vec3f( 0, 0, 0.5f * length.x ), detail ),
-				mesh( *this, xo::capsule{ radius, length.y }, color::green(), vec3f( 0, 0, 0.5f * length.y ), detail ),
-				mesh( *this, xo::capsule{ radius, length.z }, color::blue(), vec3f( 0, 0, 0.5f * length.z ), detail ) )
+				mesh( *this, shape_info{ xo::capsule{ info.radius_, info.length_.x }, color::red(), vec3f( 0, 0, 0.5f * info.length_.x ), info.detail_ } ),
+				mesh( *this, shape_info{ xo::capsule{ info.radius_, info.length_.y }, color::green(), vec3f( 0, 0, 0.5f * info.length_.y ), info.detail_ } ),
+				mesh( *this, shape_info{ xo::capsule{ info.radius_, info.length_.z }, color::blue(), vec3f( 0, 0, 0.5f * info.length_.z ), info.detail_ } ) )
 		{
 			arrows_.x.ori( xo::quat_from_euler( 0_degf, 90_degf, 0_degf ) );
 			arrows_.y.ori( xo::quat_from_euler( -90_degf, 0_degf, 0_degf ) );
