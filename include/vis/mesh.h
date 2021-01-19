@@ -13,7 +13,7 @@ namespace vis
 	struct shape_info {
 		xo::shape shape_;
 		color color_;
-		vec3f& center_ = vec3f::zero();
+		vec3f center_ = vec3f::zero();
 		float detail_ = 0.75f;
 	};
 
