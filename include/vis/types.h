@@ -1,11 +1,12 @@
 #pragma once
 
+#include "vis/vis_api.h"
 #include "xo/geometry/vec3_type.h"
 #include "xo/geometry/vec4_type.h"
 #include "xo/geometry/quat_type.h"
 #include "xo/geometry/transform.h"
 #include "xo/utility/color.h"
-#include "unique_handle.h"
+#include "vis/unique_handle.h"
 
 namespace vis
 {

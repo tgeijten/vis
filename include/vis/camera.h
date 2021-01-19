@@ -1,6 +1,6 @@
 #pragma once
 
-#include "vis_api.h"
+#include "vis/types.h"
 
 namespace vis
 {

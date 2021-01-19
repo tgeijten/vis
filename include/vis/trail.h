@@ -1,10 +1,10 @@
 #pragma once
 
-#include "mesh.h"
-#include "node.h"
-#include "types.h"
+#include "vis/mesh.h"
+#include "vis/node.h"
+#include "vis/types.h"
+#include "vis/material.h"
 #include <vector>
-#include "material.h"
 
 namespace vis
 {

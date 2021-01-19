@@ -1,8 +1,7 @@
 #pragma once
 
-#include "vis_api.h"
-#include "types.h"
-#include "node.h"
+#include "vis/types.h"
+#include "vis/node.h"
 
 namespace vis
 {
