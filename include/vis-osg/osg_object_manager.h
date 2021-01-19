@@ -36,11 +36,11 @@ namespace vis
 
 	template< typename T > unique_handle<T> osg_add( osg::Object* o ) {
 		auto idx = osg_object_manager::global_instance_.add( o );
-		xo::log::debug( "Added ", xo::get_clean_type_name<T>(), idx, " size=", osg_object_manager::global_instance_.min_size() );
+		//xo::log::trace( "Added ", xo::get_clean_type_name<T>(), idx, " size=", osg_object_manager::global_instance_.min_size() );
 		return unique_handle<T>( idx );
 	}
 	template< typename T > void osg_remove( unique_handle<T> i ) {
-		xo::log::debug( "Removing ", xo::get_clean_type_name<T>(), i.value(), " size=", osg_object_manager::global_instance_.min_size() );
+		//xo::log::trace( "Removing ", xo::get_clean_type_name<T>(), i.value(), " size=", osg_object_manager::global_instance_.min_size() );
 		return osg_object_manager::global_instance_.remove( i.value() );
 	}
 

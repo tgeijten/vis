@@ -30,7 +30,7 @@ namespace vis
 			return s;
 		}
 
-		void axes::pos_ofs( const vec3f& pos, const xo::vec3_< vec3f >& dirs ) {
+		void pos_ofs( const vec3f& pos, const xo::vec3_< vec3f >& dirs ) {
 			for ( index_t i = 0; i < 3; ++i )
 				arrows_[ i ].from_to_z( pos, pos + dirs[ i ] );
 		}
