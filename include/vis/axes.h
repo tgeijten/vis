@@ -43,4 +43,3 @@ namespace vis
 		xo::vec3_<mesh> arrows_;
 	};
 }
- 
