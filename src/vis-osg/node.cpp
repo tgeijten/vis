@@ -70,7 +70,16 @@ namespace vis
 
 	void node::set_material( material& m )
 	{
-		osg_node( node_id_ ).getOrCreateStateSet()->setAttribute( &osg_material( m.material_id() ) );
+		auto& osgmat = osg_material( m.material_id() );
+		osg_node( node_id_ ).getOrCreateStateSet()->setAttribute( &osgmat );
+		if ( osgmat.getDiffuse( osg::Material::FRONT_AND_BACK ).a() < 1.0f )
+		{
+			auto& n = osg_group( node_id_ );
+			n.getOrCreateStateSet()->setMode( GL_BLEND, osg::StateAttribute::ON );
+			n.getStateSet()->setRenderingHint( osg::StateSet::TRANSPARENT_BIN );
+			for ( unsigned int i = 0; i < n.getNumChildren(); ++i)
+				set_shadow_mask( n.getChild( i ), false, false );
+		}
 	}
 
 	bool node::has_parent() const

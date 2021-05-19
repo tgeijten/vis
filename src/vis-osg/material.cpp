@@ -4,15 +4,16 @@
 
 namespace vis
 {
-	material_info::material_info( const color& diffuse, const color& specular, float shininess, const color& ambient ) :
+	material_info::material_info( const color& diffuse, const color& specular, float shininess, const color& ambient, float alpha ) :
 		diffuse_( diffuse ),
 		specular_( specular ),
 		shininess_( shininess ),
-		ambient_( ambient )
+		ambient_( ambient ),
+		alpha_( alpha )
 	{}
 
-	material_info::material_info( const color& diffuse, float specular, float shininess, float ambient ) :
-		material_info( diffuse, specular* color::white(), shininess, ambient* diffuse )
+	material_info::material_info( const color& diffuse, float specular, float shininess, float ambient, float alpha ) :
+		material_info( diffuse, specular* color::white(), shininess, ambient* diffuse, alpha )
 	{}
 
 	material::material( const material_info& mi ) :
@@ -42,7 +43,8 @@ namespace vis
 		m.setSpecular( osg::Material::FRONT_AND_BACK, to_osg( mi.specular_ ) );
 		m.setAmbient( osg::Material::FRONT_AND_BACK, to_osg( mi.ambient_ ) );
 		m.setEmission( osg::Material::FRONT_AND_BACK, osg::Vec4( 0, 0, 0, 0 ) ); // we don't use this
-		m.setShininess( osg::Material::FRONT_AND_BACK, mi.shininess_);
+		m.setShininess( osg::Material::FRONT_AND_BACK, mi.shininess_ );
+		m.setAlpha( osg::Material::FRONT_AND_BACK, mi.alpha_ );
 	}
 
 	void material::diffuse( color col )
@@ -68,5 +70,10 @@ namespace vis
 	void material::shininess( float s )
 	{
 		osg_material( material_id_ ).setShininess( osg::Material::FRONT_AND_BACK, s );
+	}
+
+	void material::alpha( float a )
+	{
+		osg_material( material_id_ ).setAlpha( osg::Material::FRONT_AND_BACK, a );
 	}
 }
