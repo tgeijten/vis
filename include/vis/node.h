@@ -21,7 +21,7 @@ namespace vis
 		bool has_parent() const;
 
 		bool show( bool show );
-		void set_material( material& m );
+		void set_material( const material& m );
 
 		void transform( const transformf& t );
 		void pos( const vec3f& p );

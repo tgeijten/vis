@@ -68,7 +68,7 @@ namespace vis
 		return show;
 	}
 
-	void node::set_material( material& m )
+	void node::set_material( const material& m )
 	{
 		auto& osgmat = osg_material( m.material_id() );
 		osg_node( node_id_ ).getOrCreateStateSet()->setAttribute( &osgmat );

@@ -36,7 +36,7 @@ namespace vis
 		void shininess( float s );
 		void alpha( float a );
 
-		const unique_handle<material>& material_id() { return material_id_; }
+		const unique_handle<material>& material_id() const { return material_id_; }
 
 	private:
 		unique_handle<material> material_id_;
