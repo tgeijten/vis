@@ -5,6 +5,7 @@
 #include "xo/geometry/vec4_type.h"
 #include "xo/geometry/quat_type.h"
 #include "xo/geometry/transform.h"
+#include "xo/geometry/angle_type.h"
 #include "xo/utility/color.h"
 #include "vis/unique_handle.h"
 
@@ -28,5 +29,5 @@ namespace vis
 	using xo::degreef;
 	using xo::radianf;
 	using xo::index_t;
-	using namespace xo::literals;
+	using namespace xo::angle_literals;
 }
