@@ -29,6 +29,8 @@ namespace vis
 		void pos_ori( const vec3f& p, const quatf& q );
 		void from_to_z( const vec3f& from, const vec3f& to, float width = 1.0f );
 		void scale( const vec3f& s );
+		void enable_normalize();
+		void scale_enable_normalize( const vec3f& s );
 
 		const unique_handle<node>& node_id() const { return node_id_; }
 

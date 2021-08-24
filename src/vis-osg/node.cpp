@@ -123,4 +123,16 @@ namespace vis
 	{
 		osg_trans( node_id_ ).setScale( to_osg( s ) );
 	}
+
+	void node::enable_normalize()
+	{
+		osg_trans( node_id_ ).getOrCreateStateSet()->setMode( GL_NORMALIZE, osg::StateAttribute::ON );
+	}
+
+	void node::scale_enable_normalize( const vec3f& s )
+	{
+		scale( s );
+		if ( s != vec3f( 1.0f, 1.0f, 1.0f ) )
+			enable_normalize();
+	}
 }
