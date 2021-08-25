@@ -6,7 +6,7 @@ namespace vis
 {
 	struct VIS_API material_info
 	{
-		material_info() : diffuse_(), specular_(), shininess_(), ambient_() {}
+		material_info() : diffuse_(), specular_(), shininess_(), ambient_(), alpha_() {}
 		material_info( const color& diffuse, const color& specular, float shininess, const color& ambient, float alpha = 1.0f );
 		material_info( const color& diffuse, float specular = 1.0f, float shininess = 30.0f, float ambient = 0.5f, float alpha = 1.0f );
 

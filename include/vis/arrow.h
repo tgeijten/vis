@@ -17,7 +17,7 @@ namespace vis
 	class arrow : public node
 	{
 	public:
-		arrow() = default;
+		arrow() : scale_threshold() {}
 		arrow( node& parent, const arrow_info& info ) :
 			node( &parent ),
 			cylinder( *this, shape_info{ xo::cylinder{ info.shaft_radius_, 1 }, info.color_, vec3f( 0, 0, 0.5f ), info.detail_ } ),
