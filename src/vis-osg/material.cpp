@@ -30,10 +30,10 @@ namespace vis
 
 	material material::clone() const
 	{
-		auto cloned_osg = new osg::Material( osg_material( material_id_ ), osg::CopyOp::DEEP_COPY_ALL );
 		material m;
+		auto cloned_osg = new osg::Material( osg_material( material_id_ ), osg::CopyOp::DEEP_COPY_ALL );
 		m.material_id_ = osg_add<material>( cloned_osg );
-		return std::move( m );
+		return m;
 	}
 
 	void material::set( const material_info& mi )
