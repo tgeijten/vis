@@ -135,4 +135,14 @@ namespace vis
 		if ( s != vec3f( 1.0f, 1.0f, 1.0f ) )
 			enable_normalize();
 	}
+
+	void node::set_name( const char* name )
+	{
+		osg_group( node_id_ ).setName( name );
+	}
+
+	const char* node::get_name() const
+	{
+		return osg_group( node_id_ ).getName().c_str();
+	}
 }

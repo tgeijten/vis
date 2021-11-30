@@ -33,6 +33,8 @@ namespace vis
 		void scale_enable_normalize( const vec3f& s );
 
 		const unique_handle<node>& node_id() const { return node_id_; }
+		void set_name( const char* name );
+		const char* get_name() const;
 
 	protected:
 		unique_handle<node> node_id_;
