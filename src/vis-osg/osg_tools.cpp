@@ -106,4 +106,12 @@ namespace vis
 		n->setNodeMask( receive ? n->getNodeMask() | OsgReceiveShadowMask : n->getNodeMask() & ~OsgReceiveShadowMask );
 		n->setNodeMask( cast ? n->getNodeMask() | OsgCastShadowMask : n->getNodeMask() & ~OsgCastShadowMask );
 	}
+
+	const osg::Node* top_named_node( const osg::NodePath& np )
+	{
+		for ( auto it = np.rbegin(); it != np.rend(); it++ )
+			if ( !( *it )->getName().empty() )
+				return *it;
+		return nullptr;
+	}
 }
