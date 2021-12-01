@@ -24,6 +24,4 @@ namespace vis
 
 	VIS_API osg::Geode* read_vtp( const xo::path& filename );
 	VIS_API void set_shadow_mask( osg::Node* n, bool receive, bool cast );
-
-	VIS_API const osg::Node* top_named_node( const osg::NodePath& np );
 }
