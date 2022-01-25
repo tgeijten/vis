@@ -136,6 +136,14 @@ namespace vis
 			enable_normalize();
 	}
 
+	inline void set_name_recursive( osg::Node* n, const char* name ) {
+		if ( n )
+			n->setName( name );
+		if ( auto* g = dynamic_cast<osg::Group*>( n ) )
+			for ( unsigned int i = 0; i < g->getNumChildren(); ++i )
+				set_name_recursive( g->getChild( i ), name );
+	}
+
 	void node::set_name( const char* name )
 	{
 		osg_group( node_id_ ).setName( name );
