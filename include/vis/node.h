@@ -32,6 +32,9 @@ namespace vis
 		void enable_normalize();
 		void scale_enable_normalize( const vec3f& s );
 
+		void set_cast_shadows( bool b );
+		void set_receive_shadows( bool b );
+
 		const unique_handle<node>& node_id() const { return node_id_; }
 		void set_name( const char* name );
 		const char* get_name() const;

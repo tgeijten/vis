@@ -106,4 +106,15 @@ namespace vis
 		n->setNodeMask( receive ? n->getNodeMask() | OsgReceiveShadowMask : n->getNodeMask() & ~OsgReceiveShadowMask );
 		n->setNodeMask( cast ? n->getNodeMask() | OsgCastShadowMask : n->getNodeMask() & ~OsgCastShadowMask );
 	}
+
+	void set_cast_shadows( osg::Node& n, bool cast )
+	{
+		n.setNodeMask( cast ? n.getNodeMask() | OsgCastShadowMask : n.getNodeMask() & ~OsgCastShadowMask );
+	}
+
+	void set_receive_shadows( osg::Node& n, bool receive )
+	{
+		n.setNodeMask( receive ? n.getNodeMask() | OsgReceiveShadowMask : n.getNodeMask() & ~OsgReceiveShadowMask );
+	}
+
 }

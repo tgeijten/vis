@@ -136,6 +136,17 @@ namespace vis
 			enable_normalize();
 	}
 
+	void node::set_cast_shadows( bool b )
+	{
+		vis::set_cast_shadows( osg_node( node_id_ ), b );
+	}
+
+	void node::set_receive_shadows( bool b )
+	{
+		vis::set_receive_shadows( osg_node( node_id_ ), b );
+	}
+
+	
 	inline void set_name_recursive( osg::Node* n, const char* name ) {
 		if ( n )
 			n->setName( name );
