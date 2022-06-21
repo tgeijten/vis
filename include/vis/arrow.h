@@ -32,10 +32,11 @@ namespace vis
 			pos_ofs( begin_pos, end_pos - begin_pos );
 		}
 
-		void pos_ofs( const vec3f& pos, const vec3f& ofs ) {
+		void pos_ofs( const vec3f& pos, const vec3f& ofs, float scale = 1.0f ) {
 			vec3f dir = ofs;
 			auto l = normalize( dir );
-			auto scale = l < scale_threshold ? l / scale_threshold : 1.0f;
+			if ( l < scale_threshold )
+				scale *= l / scale_threshold;
 			auto q = xo::quat_from_directions( vec3f::unit_z(), dir );
 			cylinder.pos_ori( pos, q );
 			cylinder.scale( vec3f( scale, scale, l ) );
