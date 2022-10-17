@@ -52,12 +52,6 @@ if (MSVC)
 
 	source_group("vis" FILES ${VIS_INCLUDE_FILES})
 	source_group("vis-osg" FILES ${VIS_OSG_SOURCE_FILES} ${VIS_OSG_INCLUDE_FILES})
-	target_compile_options( vis-osg PRIVATE "/MP" ) # multithreaded compilation on MSVC
+	target_compile_definitions(vis-osg PRIVATE VIS_EXPORTS)
+	target_compile_options(vis-osg PRIVATE "/MP") # multithreaded compilation on MSVC
 endif()
-
-# target properties
-set_target_properties(vis-osg PROPERTIES 
-	DEFINE_SYMBOL VIS_EXPORTS 
-	PROJECT_LABEL "vis-osg"
-	OUTPUT_NAME vis-osg
-	)
