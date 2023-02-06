@@ -77,7 +77,7 @@ namespace vis
 			auto& n = osg_group( node_id_ );
 			n.getOrCreateStateSet()->setMode( GL_BLEND, osg::StateAttribute::ON );
 			n.getStateSet()->setRenderingHint( osg::StateSet::TRANSPARENT_BIN );
-			for ( unsigned int i = 0; i < n.getNumChildren(); ++i)
+			for ( unsigned int i = 0; i < n.getNumChildren(); ++i )
 				set_shadow_mask( n.getChild( i ), false, false );
 		}
 	}
@@ -146,7 +146,7 @@ namespace vis
 		vis::set_receive_shadows( osg_node( node_id_ ), b );
 	}
 
-	
+
 	inline void set_name_recursive( osg::Node* n, const char* name ) {
 		if ( n )
 			n->setName( name );

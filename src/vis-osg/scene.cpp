@@ -12,7 +12,7 @@
 namespace vis
 {
 	scene::scene( bool use_shadows, float ambient_intensity ) :
-	node()
+		node()
 	{
 		if ( use_shadows )
 		{
@@ -21,7 +21,7 @@ namespace vis
 			/// setup shadows
 			auto sm = new osgShadow::SoftShadowMap;
 			sm->setTextureSize( osg::Vec2s( 1024, 1024 ) );
-			s_root-> setShadowTechnique( sm );
+			s_root->setShadowTechnique( sm );
 			//sm->setAmbientBias( osg::Vec2( 0.5f, 0.5f ) );
 
 			auto ss = new osgShadow::ShadowSettings;

@@ -16,14 +16,14 @@ namespace vis
 		}
 		else
 		{
-			xo_assert( !data_[ idx_ ] );
-			data_[ idx_ ] = o;
+			xo_assert( !data_[idx_] );
+			data_[idx_] = o;
 
 			index_t ret_idx = idx_;
 
 			// move idx to next free entry or end
 			++idx_;
-			while ( idx_ < data_.size() && data_[ idx_ ] )
+			while ( idx_ < data_.size() && data_[idx_] )
 				++idx_;
 
 			return ret_idx;
@@ -32,8 +32,8 @@ namespace vis
 
 	void osg_object_manager::remove( index_t i )
 	{
-		xo_assert( data_[ i ] );
-		data_[ i ] = nullptr;
+		xo_assert( data_[i] );
+		data_[i] = nullptr;
 		if ( i < idx_ )
 			idx_ = i; // set next idx
 

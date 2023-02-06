@@ -22,7 +22,7 @@ namespace vis
 
 		index_t add( osg::Object* o );
 		void remove( index_t i );
-		osg::Object* get( index_t i ) { xo_assert( i < data_.size() ); return data_[ i ]; }
+		osg::Object* get( index_t i ) { xo_assert( i < data_.size() ); return data_[i]; }
 		size_t size() const { return data_.size(); }
 		size_t min_size() const;
 		void shrink_to_fit();

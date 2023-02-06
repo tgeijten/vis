@@ -10,7 +10,7 @@
 namespace vis
 {
 	plane::plane( node& parent, const vec3f& width, const vec3f& height, const xo::path& img_file, float wrep, float hrep ) :
-	node( &parent )
+		node( &parent )
 	{
 		osg::ref_ptr<osg::Image> img = osgDB::readImageFile( img_file.str() );
 		xo_assert( img.valid() );
@@ -49,7 +49,7 @@ namespace vis
 	}
 
 	plane::plane( node& parent, int x_tiles, int z_tiles, float tile_size, color a, color b ) :
-	node( &parent )
+		node( &parent )
 	{
 		// fill in vertices for grid, note numTilesX+1 * numTilesY+1...
 		osg::Vec3Array* coords = new osg::Vec3Array;
@@ -75,10 +75,10 @@ namespace vis
 				//bool black = ( iz % 2 == 0 ) && ( ix % 2 == 0 );
 				bool black = ( ix + iz ) % 2 == 0;
 				osg::DrawElementsUShort* primitives = black ? blackPrimitives.get() : whitePrimitives.get();
-				primitives->push_back( ix + ( iz + 1 )*numIndicesPerRow );
+				primitives->push_back( ix + ( iz + 1 ) * numIndicesPerRow );
 				primitives->push_back( ix + iz * numIndicesPerRow );
 				primitives->push_back( ( ix + 1 ) + iz * numIndicesPerRow );
-				primitives->push_back( ( ix + 1 ) + ( iz + 1 )*numIndicesPerRow );
+				primitives->push_back( ( ix + 1 ) + ( iz + 1 ) * numIndicesPerRow );
 			}
 		}
 

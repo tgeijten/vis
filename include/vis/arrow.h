@@ -47,7 +47,7 @@ namespace vis
 			}
 		}
 
-		void set_color( const color& c )	{
+		void set_color( const color& c ) {
 			cylinder.set_color( c );
 			end_cone.set_color( c );
 		}
