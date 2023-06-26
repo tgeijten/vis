@@ -36,6 +36,8 @@ namespace vis
 		void set_receive_shadows( bool b );
 
 		const unique_handle<node>& node_id() const { return node_id_; }
+		explicit operator bool() const { return bool( node_id_ ); }
+
 		void set_name( const char* name );
 		const char* get_name() const;
 
