@@ -21,8 +21,10 @@ namespace vis
 			/// setup shadows
 			auto sm = new osgShadow::SoftShadowMap;
 			sm->setTextureSize( osg::Vec2s( 1024, 1024 ) );
-			s_root->setShadowTechnique( sm );
+			sm->setJitteringScale( 8 );
+			sm->setBias( 0.001 );
 			//sm->setAmbientBias( osg::Vec2( 0.5f, 0.5f ) );
+			s_root->setShadowTechnique( sm );
 
 			auto ss = new osgShadow::ShadowSettings;
 			ss->setCastsShadowTraversalMask( OsgCastShadowMask );
