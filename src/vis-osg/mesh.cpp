@@ -66,6 +66,8 @@ namespace vis
 	{
 		auto hints = new osg::TessellationHints;
 		hints->setDetailRatio( info.detail_ );
+		hints->setCreateTop( info.has_top_ );
+		hints->setCreateBottom( info.has_bottom_ );
 
 		osg::ref_ptr< osg::ShapeDrawable > sd = std::visit( create_shape_visitor( hints, to_osg( info.center_ ) ), info.shape_ );
 		sd->setColor( to_osg( info.color_ ) );

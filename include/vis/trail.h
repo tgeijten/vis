@@ -39,12 +39,15 @@ namespace vis
 
 		void resize( size_t num_points ) {
 			size_t num_cylinders = num_points > 0 ? num_points - 1 : 0;
+			auto point_shape = vis::shape_info{ xo::sphere{ radius_ }, color_, vec3f::zero(), detail_ };
+			auto cylinder_shape = vis::shape_info{ xo::cylinder{ radius_, 1.0f }, color_, vec3f( 0, 0, 0.5f ), detail_ };
+			cylinder_shape.has_top_ = cylinder_shape.has_bottom_ = false;
 
 			// add points
 			while ( points.size() < num_points )
-				points.emplace_back( *this, vis::shape_info{ xo::sphere{ radius_ * 1.02f }, color_, vec3f::zero(), detail_ } );
+				points.emplace_back( *this, point_shape );
 			while ( cylinders.size() < num_cylinders )
-				cylinders.emplace_back( *this, vis::shape_info{ xo::cylinder{ radius_, 1.0f }, color_, vec3f( 0, 0, 0.5f ), detail_ } );
+				cylinders.emplace_back( *this, cylinder_shape );
 
 			// remove points
 			while ( points.size() > num_points )

@@ -13,6 +13,8 @@ namespace vis
 		color color_;
 		vec3f center_ = vec3f::zero();
 		float detail_ = 0.75f;
+		bool has_top_ = true;
+		bool has_bottom_ = true;
 	};
 
 	class VIS_API mesh : public node
