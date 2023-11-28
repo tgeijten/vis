@@ -20,6 +20,8 @@ namespace vis
 		size_t size() const;
 		bool has_parent() const;
 
+		vec3f pos() const;
+
 		bool show( bool show );
 		void set_material( const material& m );
 

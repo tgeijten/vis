@@ -59,6 +59,11 @@ namespace vis
 		return osg_group( node_id_ ).getNumChildren();
 	}
 
+	vec3f node::pos() const
+	{
+		return from_osg( osg_trans( node_id_ ).getPosition() );
+	}
+
 	bool node::show( bool show )
 	{
 		// this resets any node mask related setting
@@ -145,7 +150,6 @@ namespace vis
 	{
 		vis::set_receive_shadows( osg_node( node_id_ ), b );
 	}
-
 
 	inline void set_name_recursive( osg::Node* n, const char* name ) {
 		if ( n )
