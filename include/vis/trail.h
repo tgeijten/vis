@@ -45,9 +45,9 @@ namespace vis
 
 			// add points
 			while ( points.size() < num_points )
-				points.emplace_back( *this, point_shape );
+				points.emplace_back( *this, point_shape ).enable_normalize();
 			while ( cylinders.size() < num_cylinders )
-				cylinders.emplace_back( *this, cylinder_shape );
+				cylinders.emplace_back( *this, cylinder_shape ).enable_normalize();
 
 			// remove points
 			while ( points.size() > num_points )
@@ -64,8 +64,10 @@ namespace vis
 		if ( size_t( e - b ) != points.size() )
 			resize( e - b );
 
-		for ( size_t i = 0; i < points.size(); ++i )
+		for ( size_t i = 0; i < points.size(); ++i ) {
 			points[i].pos( vec3f( *( b + i ) ) );
+			points[i].scale( vec3f::diagonal( relative_width ) );
+		}
 
 		for ( size_t i = 0; i < cylinders.size(); ++i ) {
 			auto start = vec3f( *( b + i ) );
