@@ -13,12 +13,12 @@ namespace vis
 {
 	using xo::shape;
 
-	mesh::mesh( node& parent, const xo::path& filename ) :
+	mesh::mesh( node& parent, const xo::path& filename, const mesh_options& mo ) :
 		node( &parent )
 	{
 		osg::Node* file_node;
 		if ( filename.extension_no_dot() == "vtp" )
-			file_node = read_vtp( filename );
+			file_node = read_vtp( filename, mo.mirror_on_load );
 		else // #todo #issue87: add support for .obj and other formats
 			file_node = osgDB::readNodeFile( filename.str() );
 

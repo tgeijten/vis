@@ -14,12 +14,19 @@ namespace vis
 	/// convert space-delimited string to vector of elements
 	template< typename T > std::vector< T > str_to_vec( const std::string& s, size_t max_values, const char* delim = xo::whitespace_characters ) {
 		xo::char_stream str( s.c_str(), delim );
-		std::vector< T > vec; if ( max_values != xo::no_index ) vec.reserve( max_values );
-		while ( str.good() && vec.size() < max_values ) { T elem; str >> elem; if ( !str.fail() ) vec.push_back( elem ); }
+		std::vector< T > vec;
+		if ( max_values != xo::no_index )
+			vec.reserve( max_values );
+		while ( str.good() && vec.size() < max_values ) { 
+			T elem;
+			str >> elem;
+			if ( !str.fail() )
+				vec.push_back( elem );
+		}
 		return vec;
 	}
 
-	VIS_API osg::Geode* read_vtp( const xo::path& filename )
+	VIS_API osg::Geode* read_vtp( const xo::path& filename, bool mirror )
 	{
 		xo::prop_node root_pn = load_file( filename, "xml" );
 		xo::prop_node& poly_pn = root_pn["VTKFile"]["PolyData"]["Piece"];
@@ -36,10 +43,11 @@ namespace vis
 		xo_assert( normal_vec.size() == point_count * 3 && point_vec.size() == point_count * 3 );
 
 		size_t vec_idx = 0;
+		float z_mul = mirror ? -1.0f : 1.0f;
 		for ( int idx = 0; idx < point_count; ++idx )
 		{
-			normals->at( idx ).set( normal_vec[vec_idx], normal_vec[vec_idx + 1], normal_vec[vec_idx + 2] );
-			vertices->at( idx ).set( point_vec[vec_idx], point_vec[vec_idx + 1], point_vec[vec_idx + 2] );
+			normals->at( idx ).set( normal_vec[vec_idx], normal_vec[vec_idx + 1], z_mul * normal_vec[vec_idx + 2] );
+			vertices->at( idx ).set( point_vec[vec_idx], point_vec[vec_idx + 1], z_mul * point_vec[vec_idx + 2] );
 			vec_idx += 3;
 		}
 
@@ -47,29 +55,23 @@ namespace vis
 		osg::ref_ptr< osg::DrawElementsUShort > quadPrimitives = new osg::DrawElementsUShort( GL_QUADS );
 
 		{
-			auto con_vec = str_to_vec< int >( poly_pn["Polys"][0].get_str(), xo::no_index );
-			auto ofs_vec = str_to_vec< int >( poly_pn["Polys"][1].get_str(), xo::no_index );
+			auto con_vec = str_to_vec< unsigned short >( poly_pn["Polys"][0].get_str(), xo::no_index );
+			auto ofs_vec = str_to_vec< unsigned short >( poly_pn["Polys"][1].get_str(), xo::no_index );
 
 			for ( size_t idx = 0; idx < ofs_vec.size(); ++idx )
 			{
 				auto end_ofs = ofs_vec[idx];
 				auto begin_ofs = idx == 0 ? (unsigned short)( 0 ) : ofs_vec[idx - 1];
 				auto num_ver = end_ofs - begin_ofs;
-				if ( num_ver == 3 )
-				{
-					trianglePrimitives->push_back( (unsigned short)con_vec[begin_ofs] );
-					trianglePrimitives->push_back( (unsigned short)con_vec[begin_ofs + 1] );
-					trianglePrimitives->push_back( (unsigned short)con_vec[begin_ofs + 2] );
+				if ( num_ver == 3 ) {
+					for ( unsigned short i = 0; i < num_ver; ++i )
+						trianglePrimitives->push_back( con_vec[begin_ofs + ( mirror ? num_ver - i - 1 : i )] );
 				}
-				else if ( num_ver == 4 )
-				{
-					quadPrimitives->push_back( (unsigned short)con_vec[begin_ofs] );
-					quadPrimitives->push_back( (unsigned short)con_vec[begin_ofs + 1] );
-					quadPrimitives->push_back( (unsigned short)con_vec[begin_ofs + 2] );
-					quadPrimitives->push_back( (unsigned short)con_vec[begin_ofs + 3] );
+				else if ( num_ver == 4 ) {
+					for ( unsigned short i = 0; i < num_ver; ++i )
+						quadPrimitives->push_back( con_vec[begin_ofs + ( mirror ? num_ver - i - 1 : i )] );
 				}
-				else
-				{
+				else {
 					// silently ignore...
 					//xo::log::warning( "Unknown primitive type, number of vertices = ", num_ver );
 				}

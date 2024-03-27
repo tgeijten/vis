@@ -22,7 +22,7 @@ namespace vis
 	inline quatf from_osg( const osg::Quat& v ) { return quatf( v.w(), v.x(), v.y(), v.z() ); }
 	inline vec3f from_osg( const osg::Vec3f& v ) { return vec3f( v.x(), v.y(), v.z() ); }
 
-	VIS_API osg::Geode* read_vtp( const xo::path& filename );
+	VIS_API osg::Geode* read_vtp( const xo::path& filename, bool mirror = false );
 	VIS_API void set_shadow_mask( osg::Node* n, bool receive, bool cast );
 	VIS_API void set_cast_shadows( osg::Node& n, bool cast );
 	VIS_API void set_receive_shadows( osg::Node& n, bool receive );

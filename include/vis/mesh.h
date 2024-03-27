@@ -8,6 +8,10 @@
 
 namespace vis
 {
+	struct mesh_options {
+		bool mirror_on_load = false;
+	};
+
 	struct shape_info {
 		xo::shape shape_;
 		color color_;
@@ -21,7 +25,7 @@ namespace vis
 	{
 	public:
 		mesh() = default;
-		mesh( node& parent, const xo::path& filename );
+		mesh( node& parent, const xo::path& filename, const mesh_options& mo = {} );
 		mesh( node& parent, const shape_info& info );
 		mesh( mesh&& o ) noexcept = default;
 		mesh& operator=( mesh&& o ) noexcept = default;
