@@ -21,6 +21,7 @@ namespace vis
 	class light;
 	class material;
 
+	using real = float;
 	using xo::color;
 	using xo::vec3f;
 	using xo::vec4f;
