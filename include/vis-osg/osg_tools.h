@@ -15,7 +15,6 @@ namespace vis
 	const int OsgCastShadowMask = 0x2;
 
 	inline osg::Vec3f to_osg( const vec3f& v ) { return osg::Vec3f( v.x, v.y, v.z ); }
-	inline osg::Vec4f to_osg( const vec4f& v ) { return osg::Vec4f( v.x, v.y, v.z, v.w ); }
 	inline osg::Quat to_osg( const quatf& v ) { return osg::Quat( v.x, v.y, v.z, v.w ); }
 	inline osg::Vec4f to_osg( const xo::color& v ) { return osg::Vec4f( v.r, v.g, v.b, v.a ); }
 

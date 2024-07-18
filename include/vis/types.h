@@ -2,7 +2,6 @@
 
 #include "vis/vis_api.h"
 #include "xo/geometry/vec3_type.h"
-#include "xo/geometry/vec4_type.h"
 #include "xo/geometry/quat_type.h"
 #include "xo/geometry/transform.h"
 #include "xo/geometry/angle_type.h"
@@ -24,7 +23,6 @@ namespace vis
 	using real = float;
 	using xo::color;
 	using xo::vec3f;
-	using xo::vec4f;
 	using xo::quatf;
 	using xo::transformf;
 	using xo::degreef;
