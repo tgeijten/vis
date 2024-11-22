@@ -17,9 +17,12 @@ namespace vis
 		bool operator!=( const camera_state& o ) { return !( *this == o ); }
 
 		static camera_state default_state() { return camera_state{ -5.0_degf, 0_degf, vec3f( 0, 1, 0 ), 4.5 }; };
-		static camera_state yz() { return camera_state{ 0_degf, 0_degf, vec3f( 0, 1, 0 ), 4.5 }; };
-		static camera_state xy() { return camera_state{ 0_degf, 90_degf, vec3f( 0, 1, 0 ), 4.5 }; };
-		static camera_state xz() { return camera_state{ -90_degf, 90_degf, vec3f( 0, 1, 0 ), 4.5 }; };
+		static camera_state right_plane() { return camera_state{ 0_degf, 0_degf, vec3f( 0, 1, 0 ), 4.5 }; };
+		static camera_state front_plane() { return camera_state{ 0_degf, 90_degf, vec3f( 0, 1, 0 ), 4.5 }; };
+		static camera_state top_plane() { return camera_state{ -90_degf, 0_degf, vec3f( 0, 1, 0 ), 4.5 }; };
+		static camera_state left_plane() { return camera_state{ 0_degf, 180_degf, vec3f( 0, 1, 0 ), 4.5 }; };
+		static camera_state back_plane() { return camera_state{ 0_degf, -90_degf, vec3f( 0, 1, 0 ), 4.5 }; };
+		static camera_state bottom_plane() { return camera_state{ 90_degf, 0_degf, vec3f( 0, 1, 0 ), 4.5 }; };
 	};
 
 	inline camera_state lerp( const camera_state& c1, const camera_state& c2, float t ) {
