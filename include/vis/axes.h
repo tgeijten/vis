@@ -9,6 +9,7 @@ namespace vis
 	struct axes_info {
 		vec3f length_ = vec3f::diagonal( 0.1f );
 		float radius_ = 0.005f;
+		xo::vec3_<color> colors_ = { color::red(), color::green(), color::blue() };
 		float detail_ = 0.5f;
 	};
 
@@ -19,9 +20,9 @@ namespace vis
 		axes( node& parent, const axes_info& info ) :
 			node( &parent ),
 			arrows_(
-				mesh( *this, shape_info{ xo::capsule{ info.radius_, info.length_.x }, color::red(), vec3f( 0, 0, 0.5f * info.length_.x ), info.detail_ } ),
-				mesh( *this, shape_info{ xo::capsule{ info.radius_, info.length_.y }, color::green(), vec3f( 0, 0, 0.5f * info.length_.y ), info.detail_ } ),
-				mesh( *this, shape_info{ xo::capsule{ info.radius_, info.length_.z }, color::blue(), vec3f( 0, 0, 0.5f * info.length_.z ), info.detail_ } ) )
+				mesh( *this, shape_info{ xo::capsule{ info.radius_, info.length_.x }, info.colors_.x, vec3f( 0, 0, 0.5f * info.length_.x ), info.detail_ } ),
+				mesh( *this, shape_info{ xo::capsule{ info.radius_, info.length_.y }, info.colors_.y, vec3f( 0, 0, 0.5f * info.length_.y ), info.detail_ } ),
+				mesh( *this, shape_info{ xo::capsule{ info.radius_, info.length_.z }, info.colors_.x, vec3f( 0, 0, 0.5f * info.length_.z ), info.detail_ } ) )
 		{
 			arrows_.x.ori( xo::quat_from_euler( 0_degf, 90_degf, 0_degf ) );
 			arrows_.y.ori( xo::quat_from_euler( -90_degf, 0_degf, 0_degf ) );
@@ -38,6 +39,8 @@ namespace vis
 			for ( index_t i = 0; i < 3; ++i )
 				arrows_[i].from_to_z( pos, pos + dirs[i] );
 		}
+		 
+		xo::vec3_<mesh>& meshes() { return arrows_; }
 
 	private:
 		xo::vec3_<mesh> arrows_;
