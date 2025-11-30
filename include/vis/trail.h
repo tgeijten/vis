@@ -29,6 +29,10 @@ namespace vis
 
 		template< typename It >
 		void set_points( It b, It e, float relative_width = 1.0f );
+		vec3f point_pos( index_t i ) const { return points[i].pos(); }
+		size_t size() const { return points.size(); }
+		bool empty() const { return points.empty(); }
+		vec3f pos() const { return empty() ? node::pos() : points.front().pos(); }
 
 	private:
 		float radius_;
