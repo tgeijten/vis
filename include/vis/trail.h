@@ -27,12 +27,13 @@ namespace vis
 			detail_( ti.detail_ )
 		{}
 
-		template< typename It >
-		void set_points( It b, It e, float relative_width = 1.0f );
+		template< typename It > void set_points( It b, It e, float relative_width = 1.0f );
+		template< typename Cont > void set_points( const Cont& c, float relative_width = 1.0f );
 		vec3f point_pos( index_t i ) const { return points[i].pos(); }
 		size_t size() const { return points.size(); }
 		bool empty() const { return points.empty(); }
 		vec3f pos() const { return empty() ? node::pos() : points.front().pos(); }
+		void clear() { points.clear(); cylinders.clear(); }
 
 	private:
 		float radius_;
@@ -63,8 +64,7 @@ namespace vis
 	};
 
 	template< typename It >
-	void trail::set_points( It b, It e, float relative_width )
-	{
+	void trail::set_points( It b, It e, float relative_width ) {
 		if ( size_t( e - b ) != points.size() )
 			resize( e - b );
 
@@ -78,5 +78,10 @@ namespace vis
 			auto end = vec3f( *( b + i + 1 ) );
 			cylinders[i].from_to_z( start, end, relative_width );
 		}
+	}
+
+	template< typename Cont >
+	void trail::set_points( const Cont& c, float relative_width ) {
+		set_points( std::begin( c ), std::end( c ), relative_width );
 	}
 }
