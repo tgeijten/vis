@@ -2,6 +2,7 @@
 
 #include <osg/Geometry>
 #include <osg/Material>
+#include <osgUtil/SmoothingVisitor>
 #include "xo/container/prop_node.h"
 #include "xo/system/log.h"
 #include "xo/time/timer.h"
@@ -40,13 +41,15 @@ namespace vis
 		auto normal_vec = str_to_vec< float >( poly_pn["PointData"]["DataArray"].get_str(), point_count * 3 );
 		auto point_vec = str_to_vec< float >( poly_pn["Points"]["DataArray"].get_str(), point_count * 3 );
 
-		xo_assert( normal_vec.size() == point_count * 3 && point_vec.size() == point_count * 3 );
+		bool has_normals = normal_vec.size() >= point_count * 3;
+		xo_assert( point_vec.size() == point_count * 3 );
 
 		size_t vec_idx = 0;
 		float z_mul = mirror ? -1.0f : 1.0f;
 		for ( int idx = 0; idx < point_count; ++idx )
 		{
-			normals->at( idx ).set( normal_vec[vec_idx], normal_vec[vec_idx + 1], z_mul * normal_vec[vec_idx + 2] );
+			if ( has_normals )
+				normals->at( idx ).set( normal_vec[vec_idx], normal_vec[vec_idx + 1], z_mul * normal_vec[vec_idx + 2] );
 			vertices->at( idx ).set( point_vec[vec_idx], point_vec[vec_idx + 1], z_mul * point_vec[vec_idx + 2] );
 			vec_idx += 3;
 		}
@@ -92,7 +95,9 @@ namespace vis
 
 		// pass the created vertex array to the points geometry object
 		polyGeom->setVertexArray( vertices );
-		polyGeom->setNormalArray( normals, osg::Array::BIND_PER_VERTEX );
+		if ( has_normals )
+			polyGeom->setNormalArray( normals, osg::Array::BIND_PER_VERTEX );
+		else osgUtil::SmoothingVisitor::smooth( *polyGeom );
 		polyGeom->setCullingActive( true );
 
 		// add the points geometry to the geode.
